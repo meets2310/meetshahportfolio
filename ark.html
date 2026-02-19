@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARK — Healthcare Risk Assessment Platform · Meet Shah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F0E8;
+      --ink: #1A1612;
+      --warm-mid: #6B5F52;
+      --accent: #C4552A;
+      --accent-light: #E8A98A;
+      --soft-line: rgba(26,22,18,0.1);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* Cursor */
+    .cursor { position: fixed; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .3s,height .3s; mix-blend-mode: multiply; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s,height .3s; opacity: .5; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 4rem;
+      background: #FFFFF8;
+      box-shadow: 0 1px 0 rgba(26,22,18,0.08), 0 2px 16px rgba(26,22,18,0.06);
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-mid); text-decoration: none; transition: color .2s; cursor: none; }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg { transition: transform .2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+
+    /* Hero */
+    .project-hero {
+      padding: 10rem 4rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      border-bottom: 1px solid var(--soft-line);
+    }
+    .hero-tag {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin-bottom: 1.25rem;
+      opacity: 0; animation: fadeUp .8s .2s forwards;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--ink);
+      opacity: 0; animation: fadeUp .9s .35s forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-subtitle {
+      font-size: 1rem; color: var(--warm-mid); margin-top: 1.5rem; max-width: 480px;
+      opacity: 0; animation: fadeUp .9s .5s forwards;
+    }
+    .hero-meta {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem;
+      opacity: 0; animation: fadeUp .9s .55s forwards;
+    }
+    .meta-item {}
+    .meta-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.25rem; }
+    .meta-value { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--ink); }
+
+    /* Hero image */
+    .hero-image-wrap {
+      width: 100%; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(26,22,18,0.12);
+      opacity: 0; animation: fadeIn 1.1s .4s forwards;
+    }
+    .hero-image-wrap img { width: 100%; display: block; }
+
+    /* Content */
+    .project-content { max-width: 820px; margin: 0 auto; padding: 5rem 4rem; }
+
+    .content-section { margin-bottom: 4rem; opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .content-section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.75rem; }
+
+    h2.content-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300; line-height: 1.1; color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    h2.content-heading em { font-style: italic; color: var(--accent); }
+
+    h3.sub-heading {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 400; color: var(--ink);
+      margin: 2rem 0 0.75rem;
+    }
+
+    h4.step-heading {
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin: 1.75rem 0 0.5rem;
+    }
+
+    p { font-size: 0.95rem; color: var(--warm-mid); line-height: 1.8; margin-bottom: 1rem; }
+    p strong { color: var(--ink); font-weight: 500; }
+
+    /* Snapshot grid */
+    .snapshot-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--soft-line); border: 1px solid var(--soft-line);
+      border-radius: 12px; overflow: hidden; margin: 2rem 0;
+    }
+    .snapshot-cell {
+      background: var(--cream); padding: 1.5rem;
+    }
+    .snapshot-cell .meta-label { margin-bottom: 0.35rem; }
+    .snapshot-cell .meta-value { font-size: 0.95rem; }
+
+    /* Focus pills */
+    .focus-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.25rem 0; }
+    .focus-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(196,85,42,0.08); border: 1px solid rgba(196,85,42,0.2);
+      border-radius: 99px; padding: 0.4rem 1rem;
+      font-size: 0.78rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 500;
+    }
+
+    /* Callout */
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 1.25rem 1.5rem;
+      background: rgba(196,85,42,0.05);
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+    .callout p { margin-bottom: 0; font-style: italic; color: var(--ink); }
+
+    /* Decision cards */
+    .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .decision-card {
+      background: white; border: 1px solid var(--soft-line); border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .decision-title { font-size: 0.85rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+    .decision-desc { font-size: 0.82rem; color: var(--warm-mid); line-height: 1.6; margin: 0; }
+
+    /* Gallery */
+    .gallery { margin: 2.5rem 0; display: flex; flex-direction: column; gap: 1.5rem; }
+    .gallery-img {
+      width: 100%; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(26,22,18,0.1);
+    }
+    .gallery-img img { width: 100%; display: block; }
+    .gallery-caption { font-size: 0.78rem; color: var(--warm-mid); text-align: center; margin-top: 0.5rem; font-style: italic; }
+
+    /* Outcomes */
+    .outcomes-list { list-style: none; margin: 1.25rem 0; display: flex; flex-direction: column; gap: 0.75rem; }
+    .outcomes-list li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.92rem; color: var(--warm-mid);
+    }
+    .outcomes-list li::before {
+      content: '→'; color: var(--accent); font-size: 0.9rem; flex-shrink: 0; margin-top: 0.1rem;
+    }
+
+    /* Divider */
+    .content-divider { width: 100%; height: 1px; background: var(--soft-line); margin: 3rem 0; }
+
+    /* Next project */
+    .next-project {
+      padding: 5rem 4rem;
+      border-top: 1px solid var(--soft-line);
+      text-align: center;
+    }
+    .next-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 1rem; }
+    .next-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--ink); margin-bottom: 2rem; }
+    .next-title em { font-style: italic; color: var(--accent); }
+    .next-card {
+      display: inline-block; max-width: 500px; border-radius: 16px; overflow: hidden;
+      text-decoration: none; color: inherit;
+      box-shadow: 0 4px 24px rgba(26,22,18,0.1);
+      transition: transform .35s ease, box-shadow .35s ease;
+      cursor: none;
+    }
+    .next-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(26,22,18,0.16); }
+    .next-card img { width: 100%; display: block; }
+    .next-card-info { padding: 1.5rem 2rem; background: white; text-align: left; }
+    .next-card-cat { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.4rem; }
+    .next-card-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; color: var(--ink); }
+
+    /* Footer */
+    footer {
+      padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center;
+      background: var(--ink); border-top: 1px solid rgba(245,240,232,0.08);
+    }
+    .footer-copy { font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(245,240,232,0.3); }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .project-hero { grid-template-columns: 1fr; padding: 8rem 1.5rem 3rem; gap: 2.5rem; }
+      .project-content { padding: 3rem 1.5rem; }
+      .snapshot-grid { grid-template-columns: 1fr 1fr; }
+      .decisions-grid { grid-template-columns: 1fr; }
+      .next-project { padding: 4rem 1.5rem; }
+      footer { flex-direction: column; gap: .5rem; padding: 1.5rem; text-align: center; }
+      body { cursor: auto; }
+      .cursor, .cursor-ring { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Meet Shah</a>
+    <a href="index.html#projects" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      All Projects
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div>
+      <p class="hero-tag">Healthcare · Enterprise Dashboard · 2024</p>
+      <h1 class="hero-title">ARK — Healthcare<br><em>Risk Assessment</em><br>Platform</h1>
+      <p class="hero-subtitle">Redesigning a legacy clinical dashboard into a faster, clearer decision experience for healthcare professionals under pressure.</p>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Lead UX/UI Designer</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Timeline</p>
+        <p class="meta-value">14 Weeks</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Team</p>
+        <p class="meta-value">2 Designers · 2 Researchers</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Platform</p>
+        <p class="meta-value">Web App</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Tools</p>
+        <p class="meta-value">Figma · Notion</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Date</p>
+        <p class="meta-value">Jun 2024</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO IMAGE -->
+  <div style="padding: 3rem 4rem; background: var(--cream);">
+    <div class="hero-image-wrap">
+      <img src="https://framerusercontent.com/images/cBtyWY9IDDKYR43TYyd1rzf5A.png" alt="ARK Dashboard" />
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="project-content">
+
+    <!-- Overview -->
+    <div class="content-section">
+      <p class="section-label">Overview</p>
+      <h2 class="content-heading">Purpose <em>&</em> Goal</h2>
+      <p>ARK supported healthcare teams in reviewing risk and patient information, but the experience was slow to scan and hard to trust under pressure.</p>
+      <div class="callout">
+        <p><strong>Goal:</strong> Make ARK clear, fast, and reliable for high-stakes workflows by improving information hierarchy, reducing clutter, and standardising UI patterns.</p>
+      </div>
+      <div class="focus-list">
+        <span class="focus-pill">Clarity</span>
+        <span class="focus-pill">Trust</span>
+        <span class="focus-pill">Speed</span>
+        <span class="focus-pill">Information Hierarchy</span>
+        <span class="focus-pill">Design Systems</span>
+      </div>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <!-- Problem -->
+    <div class="content-section">
+      <p class="section-label">The Problem</p>
+      <h2 class="content-heading">Playing <em>Where's Waldo</em><br>during a crisis</h2>
+      <p>Doctors couldn't find critical patient info during emergencies. Manual workflows created delays. The UI felt inconsistent — adding stress when accuracy mattered most.</p>
+      <p>The platform was slow, cluttered, and felt like it was designed in 2008 (because it kind of was). Healthcare workers described it as <strong>"playing Where's Waldo during a crisis"</strong> — not ideal when lives are on the line.</p>
+
+      <div class="gallery">
+        <div class="gallery-img">
+          <img src="https://framerusercontent.com/images/8TjP07jwyjiepxfhworloKPRwpI.jpg" alt="Before — legacy dashboard with high visual noise" />
+          <p class="gallery-caption">Before: high visual noise and unclear hierarchy created friction in high-stakes moments.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <!-- Process -->
+    <div class="content-section">
+      <p class="section-label">Process</p>
+      <h2 class="content-heading">How I <em>did it</em></h2>
+
+      <h4 class="step-heading">1 — Discover</h4>
+      <p>I evaluated the current experience and aligned on the core usability risks: cognitive overload, poor prioritisation, and inconsistent interaction patterns.</p>
+      <div class="callout"><p><strong>Key insight:</strong> Users need prioritized signals, not more data.</p></div>
+
+      <h4 class="step-heading">2 — Define (IA + Flow)</h4>
+      <p>I restructured the experience around role needs and core tasks, so the interface shows the right content at the right moment — without forcing users to scan everything.</p>
+
+      <h4 class="step-heading">3 — Design & Iterate</h4>
+      <p>I ran multiple wireframe rounds to remove clutter, strengthen hierarchy, and introduce progressive disclosure — moving from data-dense screens to decision-first layouts.</p>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <!-- Key Decisions -->
+    <div class="content-section">
+      <p class="section-label">Design Decisions</p>
+      <h2 class="content-heading">What I chose <em>&</em> why</h2>
+      <div class="decisions-grid">
+        <div class="decision-card">
+          <p class="decision-title">Progressive Disclosure</p>
+          <p class="decision-desc">Over dense dashboards — reduces cognitive load, improves focus on what matters most.</p>
+        </div>
+        <div class="decision-card">
+          <p class="decision-title">Card Hierarchy over Tables</p>
+          <p class="decision-desc">Faster scanning, clearer grouping, and naturally responsive-friendly.</p>
+        </div>
+        <div class="decision-card">
+          <p class="decision-title">Restrained Alert System</p>
+          <p class="decision-desc">Avoids alarm fatigue while still highlighting critical risks clearly.</p>
+        </div>
+        <div class="decision-card">
+          <p class="decision-title">Reusable Design System</p>
+          <p class="decision-desc">Scalable foundations prevent future clutter and ensure visual consistency.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <!-- Final Interface + Gallery -->
+    <div class="content-section">
+      <p class="section-label">Final Interface</p>
+      <h2 class="content-heading">What I <em>delivered</em></h2>
+      <p>The final UI is calm, structured, and prioritised — so users can spot what matters immediately and access deeper details only when needed.</p>
+
+      <div class="gallery">
+        <div class="gallery-img">
+          <img src="https://framerusercontent.com/images/xaZjogKsA8lHbka5RkEBurM2kpk.png" alt="ARK Final Dashboard" />
+          <p class="gallery-caption">Final redesigned dashboard built for rapid scanning and prioritized risk signals.</p>
+        </div>
+        <div class="gallery-img">
+          <img src="https://framerusercontent.com/images/h6cg1NWUpGoXWfoeFr2DDl46AQ.png" alt="ARK UI Screen 2" />
+        </div>
+        <div class="gallery-img">
+          <img src="https://framerusercontent.com/images/FpWK7jlJiGgVEnP9Kz0GPN1WfBk.jpg" alt="ARK UI Screen 3" />
+        </div>
+        <div class="gallery-img">
+          <img src="https://framerusercontent.com/images/WXsmb7GcJTrSsVzKbbuIjjBFeM.jpg" alt="ARK UI Screen 4" />
+        </div>
+        <div class="gallery-img">
+          <img src="https://framerusercontent.com/images/mqjJB7xlUnbY7Y7AXamUiQuL4.jpg" alt="ARK UI Screen 5" />
+        </div>
+      </div>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <!-- Design System -->
+    <div class="content-section">
+      <p class="section-label">Design System</p>
+      <h2 class="content-heading">Built to <em>scale</em></h2>
+      <p>I built a lightweight design system to keep the experience consistent and scalable — preventing future clutter.</p>
+      <div class="decisions-grid">
+        <div class="decision-card">
+          <p class="decision-title">Foundations</p>
+          <p class="decision-desc">Typography scale, spacing, tokens, colour usage</p>
+        </div>
+        <div class="decision-card">
+          <p class="decision-title">Components</p>
+          <p class="decision-desc">Buttons, inputs, cards, badges, alerts, navigation</p>
+        </div>
+        <div class="decision-card">
+          <p class="decision-title">Patterns</p>
+          <p class="decision-desc">Empty/error/loading states, table/card behaviour</p>
+        </div>
+        <div class="decision-card">
+          <p class="decision-title">Accessibility</p>
+          <p class="decision-desc">Contrast, focus states, keyboard behaviour</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <!-- Outcome -->
+    <div class="content-section">
+      <p class="section-label">Outcome</p>
+      <h2 class="content-heading">From data-heavy<br>to <em>decision-first</em></h2>
+      <ul class="outcomes-list">
+        <li>Faster identification of high-priority risk signals</li>
+        <li>Reduced visual noise and scanning effort</li>
+        <li>Clearer flows with fewer manual steps</li>
+        <li>More consistent UI through reusable components</li>
+      </ul>
+      <div class="callout">
+        <p><strong>The result:</strong> Healthcare teams could focus on care, not hunting for information.</p>
+      </div>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <!-- Next Steps -->
+    <div class="content-section">
+      <p class="section-label">Next Steps</p>
+      <h2 class="content-heading">What comes <em>next</em></h2>
+      <ul class="outcomes-list">
+        <li>Real-time AI predictions to surface risks before they escalate</li>
+        <li>Mobile companion app for on-the-go risk monitoring</li>
+        <li>Integration with additional EHR systems for broader deployment</li>
+        <li>Advanced knowledge graph visualisation for complex patient histories</li>
+        <li>Cross-institutional data sharing with privacy safeguards</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- NEXT PROJECT -->
+  <div class="next-project">
+    <p class="next-label">Next Project</p>
+    <h2 class="next-title">Up next — <em>Aiducate</em></h2>
+    <a href="aiducate.html" class="next-card">
+      <img src="https://framerusercontent.com/images/tvzg3yCKOrlTc1wiMs7pH3Dfg.jpg" alt="Aiducate" />
+      <div class="next-card-info">
+        <p class="next-card-cat">EdTech · Social Impact</p>
+        <p class="next-card-title">Aiducate — Educational Resource Platform</p>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2025 Meet Shah. All rights reserved.</span>
+    <span class="footer-copy">Dublin, Ireland</span>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+    (function animRing(){ rx += (mx-rx)*.12; ry += (my-ry)*.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); })();
+
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.content-section').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
