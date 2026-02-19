@@ -1,5 +1,5 @@
 Bun.serve({
-  port: 3000,
+  port: 3001,
   async fetch(req) {
     const url = new URL(req.url);
     const path = url.pathname === "/" ? "/index.html" : url.pathname;
@@ -11,4 +11,4 @@ Bun.serve({
   },
 });
 
-console.log("Bun server running on http://0.0.0.0:3000");
+console.log("Bun server running on http://0.0.0.0:3001");
