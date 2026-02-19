@@ -77,9 +77,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.25rem 4rem;
-      background: #FFFFF8;
-      box-shadow: 0 1px 0 rgba(26,22,18,0.08), 0 2px 16px rgba(26,22,18,0.06);
+      padding: 1.5rem 4rem;
+      mix-blend-mode: multiply;
     }
 
     .nav-logo {
@@ -87,11 +86,9 @@
       font-size: 1.25rem;
       font-weight: 600;
       letter-spacing: 0.02em;
-      color: var(--accent);
+      color: var(--ink);
       text-decoration: none;
-      transition: color 0.2s;
     }
-    .nav-logo:hover { color: var(--ink); }
 
     .nav-links {
       display: flex;
@@ -103,16 +100,11 @@
       font-size: 0.8rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--warm-mid);
       text-decoration: none;
-      font-weight: 400;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: #010101; }
-    .nav-links a.active {
-      color: #010101;
-      font-weight: 700;
-    }
+    .nav-links a:hover { color: var(--accent); }
 
     /* Hero */
     .hero {
@@ -333,26 +325,21 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
-      margin-top: 3rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--soft-line);
+      border-left: 1px solid var(--soft-line);
     }
 
     .project-card {
+      border-right: 1px solid var(--soft-line);
+      border-bottom: 1px solid var(--soft-line);
       position: relative;
+      overflow: hidden;
       cursor: none;
       text-decoration: none;
       color: inherit;
       display: block;
       background: var(--cream);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(26,22,18,0.07);
-      transition: box-shadow 0.35s ease, transform 0.35s ease;
-      margin: 0.75rem;
-    }
-
-    .project-card:hover {
-      box-shadow: 0 8px 36px rgba(26,22,18,0.13);
-      transform: translateY(-4px);
     }
 
     .project-card:hover .project-thumb { transform: scale(1.04); filter: sepia(10%) contrast(1.05); }
@@ -362,7 +349,6 @@
     .project-thumb-wrap {
       height: 280px;
       overflow: hidden;
-      border-radius: 16px 16px 0 0;
     }
 
     .project-thumb {
@@ -380,7 +366,6 @@
       background: linear-gradient(to bottom, transparent 50%, rgba(26,22,18,0.3));
       opacity: 0;
       transition: opacity 0.4s;
-      border-radius: 16px 16px 0 0;
     }
 
     .project-info {
@@ -520,72 +505,31 @@
       padding: 2.5rem;
       background: rgba(245,240,232,0.04);
       border: 1px solid rgba(245,240,232,0.08);
-      transition: background 0.35s ease, box-shadow 0.35s ease;
+      transition: background 0.3s;
       cursor: none;
     }
 
-    .skill-item:hover {
-      background: #F5F0E8;
-      box-shadow: 0 0 0 1px rgba(245,240,232,0.6), 0 0 32px 6px rgba(245,240,232,0.25), 0 0 60px 10px rgba(245,240,232,0.12);
-    }
-
-    .skill-item:hover .skill-name { color: #1A1612; }
-    .skill-item:hover .skill-subtext { color: rgba(26,22,18,0.6); }
-    .skill-item:hover .skill-pct-label { color: rgba(26,22,18,0.45); }
-    .skill-item:hover .skill-icon { color: #1A1612; }
-    .skill-item:hover .skill-bar-track { background: rgba(26,22,18,0.1); }
-    .skill-item:hover .skill-bar-fill { background: var(--accent); }
+    .skill-item:hover { background: rgba(196,85,42,0.12); }
 
     .skill-icon {
-      width: 40px;
-      height: 40px;
+      font-size: 1.5rem;
       margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: start;
-    }
-
-    .skill-icon img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-      opacity: 0.7;
-      transition: filter 0.3s, opacity 0.3s;
-    }
-
-    .skill-item:hover .skill-icon img {
-      filter: none;
-      opacity: 1;
     }
 
     .skill-name {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 400;
       color: var(--cream);
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.01em;
-      transition: color 0.3s;
-    }
-
-    .skill-subtext {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: rgba(245,240,232,0.5);
-      line-height: 1.55;
-      transition: color 0.3s;
+      margin-bottom: 0.5rem;
     }
 
     .skill-bar-track {
-      height: 3px;
+      height: 2px;
       background: rgba(245,240,232,0.1);
-      margin-top: 1.25rem;
+      margin-top: 1rem;
       position: relative;
       overflow: hidden;
-      border-radius: 99px;
-      transition: background 0.3s;
     }
 
     .skill-bar-fill {
@@ -593,18 +537,17 @@
       top: 0; left: 0;
       height: 100%;
       background: var(--accent);
-      width: var(--target);
-      border-radius: 99px;
-      transition: background 0.3s;
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .skill-pct-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      color: rgba(245,240,232,0.35);
-      margin-top: 0.6rem;
-      font-weight: 500;
-      transition: color 0.3s;
+    .skill-bar-fill.animated { width: var(--target); }
+
+    .skill-pct {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,240,232,0.4);
+      margin-top: 0.5rem;
     }
 
     /* Testimonials */
@@ -833,100 +776,10 @@
       transform: translateY(0);
     }
 
-    /* Burger menu */
-    .burger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-      z-index: 200;
-    }
-
-    .burger span {
-      display: block;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 2px;
-      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s ease, width 0.3s ease;
-      transform-origin: center;
-    }
-
-    .burger span:nth-child(1) { width: 24px; }
-    .burger span:nth-child(2) { width: 18px; }
-    .burger span:nth-child(3) { width: 24px; }
-
-    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 24px; }
-    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 24px; }
-
-    /* Mobile drawer */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #FFFFF8;
-      z-index: 150;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
-    }
-
-    .mobile-menu.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .mobile-menu-item {
-      width: 100%;
-      text-align: center;
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid rgba(26,22,18,0.08);
-    }
-
-    .mobile-menu-item:first-child {
-      border-top: 1px solid rgba(26,22,18,0.08);
-    }
-
-    .mobile-menu-item a {
-      font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 300;
-      color: var(--accent);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
-      display: block;
-    }
-
-    .mobile-menu-item a:hover,
-    .mobile-menu-item a.active {
-      color: #010101;
-      font-style: italic;
-    }
-
-    .mobile-menu-footer {
-      margin-top: 3rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--warm-mid);
-    }
-
     /* Mobile */
     @media (max-width: 900px) {
       nav { padding: 1.25rem 1.5rem; }
       .nav-links { display: none; }
-      .burger { display: flex; }
-      .mobile-menu { display: flex; }
       section { padding: 5rem 1.5rem; }
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-left { padding: 7rem 1.5rem 3rem; }
@@ -962,21 +815,7 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="burger" id="burger" aria-label="Open menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
   </nav>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-item"><a href="#projects" class="mobile-nav-link">Work</a></div>
-    <div class="mobile-menu-item"><a href="#about" class="mobile-nav-link">Story</a></div>
-    <div class="mobile-menu-item"><a href="#skills" class="mobile-nav-link">Skills</a></div>
-    <div class="mobile-menu-item"><a href="#contact" class="mobile-nav-link">Contact</a></div>
-    <p class="mobile-menu-footer">Meet Shah · UX/UI Designer</p>
-  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1018,7 +857,7 @@
     </div>
     <div class="projects-grid">
 
-      <a href="ark.html" class="project-card reveal">
+      <a href="https://meetshah.framer.website/projects/ark" target="_blank" class="project-card reveal">
         <div class="project-thumb-wrap">
           <img class="project-thumb" src="https://framerusercontent.com/images/cBtyWY9IDDKYR43TYyd1rzf5A.png" alt="ARK Healthcare" />
           <div class="project-overlay"></div>
@@ -1031,7 +870,7 @@
         <div class="project-arrow">↗</div>
       </a>
 
-      <a href="aiducate.html" class="project-card reveal">
+      <a href="https://meetshah.framer.website/projects/aid-ucate" target="_blank" class="project-card reveal">
         <div class="project-thumb-wrap">
           <img class="project-thumb" src="https://framerusercontent.com/images/tvzg3yCKOrlTc1wiMs7pH3Dfg.jpg" alt="Aiducate" />
           <div class="project-overlay"></div>
@@ -1044,7 +883,7 @@
         <div class="project-arrow">↗</div>
       </a>
 
-      <a href="unicare.html" class="project-card reveal">
+      <a href="https://meetshah.framer.website/projects/uni-care" target="_blank" class="project-card reveal">
         <div class="project-thumb-wrap">
           <img class="project-thumb" src="https://framerusercontent.com/images/HB14Cn1DuWRnVB53HjcvQ0Nauo.png" alt="UniCare" />
           <div class="project-overlay"></div>
@@ -1057,7 +896,7 @@
         <div class="project-arrow">↗</div>
       </a>
 
-      <div class="project-card reveal" style="display:flex;align-items:center;justify-content:center;min-height:380px;background:rgba(196,85,42,0.04);border:1.5px dashed rgba(196,85,42,0.2);">
+      <div class="project-card reveal" style="display:flex;align-items:center;justify-content:center;min-height:380px;background:rgba(196,85,42,0.04);">
         <div style="text-align:center;padding:2rem;">
           <p style="font-family:var(--font-display);font-size:1.2rem;color:var(--warm-mid);font-style:italic;">More work coming soon</p>
           <p style="font-size:0.78rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.5rem;">Currently building</p>
@@ -1147,46 +986,46 @@
     </div>
     <div class="skills-grid">
       <div class="skill-item">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/figma.svg" alt="Figma icon" /></div>
+        <div class="skill-icon">◈</div>
         <p class="skill-name">Figma</p>
-        <p class="skill-subtext">Designing intuitive interfaces with seamless collaboration</p>
+        <p class="skill-pct" style="font-size:0.78rem;color:rgba(245,240,232,0.5)">Designing intuitive interfaces with seamless collaboration</p>
         <div class="skill-bar-track"><div class="skill-bar-fill" style="--target:90%"></div></div>
-        <p class="skill-pct-label">90%</p>
+        <p class="skill-pct">90%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/adobephotoshop.svg" alt="Adobe Photoshop icon" /></div>
+        <div class="skill-icon">◈</div>
         <p class="skill-name">Adobe Photoshop</p>
-        <p class="skill-subtext">Enhancing visuals and creating stunning graphics</p>
+        <p class="skill-pct" style="font-size:0.78rem;color:rgba(245,240,232,0.5)">Enhancing visuals and creating stunning graphics</p>
         <div class="skill-bar-track"><div class="skill-bar-fill" style="--target:70%"></div></div>
-        <p class="skill-pct-label">70%</p>
+        <p class="skill-pct">70%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/notion.svg" alt="Notion icon" /></div>
+        <div class="skill-icon">◈</div>
         <p class="skill-name">Notion</p>
-        <p class="skill-subtext">Streamlining project management workflow</p>
+        <p class="skill-pct" style="font-size:0.78rem;color:rgba(245,240,232,0.5)">Streamlining project management workflow</p>
         <div class="skill-bar-track"><div class="skill-bar-fill" style="--target:65%"></div></div>
-        <p class="skill-pct-label">65%</p>
+        <p class="skill-pct">65%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/adobeillustrator.svg" alt="Adobe Illustrator icon" /></div>
+        <div class="skill-icon">◈</div>
         <p class="skill-name">Adobe Illustrator</p>
-        <p class="skill-subtext">Crafting crisp vector illustrations and branding</p>
+        <p class="skill-pct" style="font-size:0.78rem;color:rgba(245,240,232,0.5)">Crafting crisp vector illustrations and branding</p>
         <div class="skill-bar-track"><div class="skill-bar-fill" style="--target:60%"></div></div>
-        <p class="skill-pct-label">60%</p>
+        <p class="skill-pct">60%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/miro.svg" alt="Miro icon" /></div>
+        <div class="skill-icon">◈</div>
         <p class="skill-name">Miro</p>
-        <p class="skill-subtext">Ideation & collaboration workshops</p>
+        <p class="skill-pct" style="font-size:0.78rem;color:rgba(245,240,232,0.5)">Ideation & collaboration workshops</p>
         <div class="skill-bar-track"><div class="skill-bar-fill" style="--target:50%"></div></div>
-        <p class="skill-pct-label">50%</p>
+        <p class="skill-pct">50%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/framer.svg" alt="Framer icon" /></div>
+        <div class="skill-icon">◈</div>
         <p class="skill-name">Framer</p>
-        <p class="skill-subtext">Building high-performance websites with animations</p>
+        <p class="skill-pct" style="font-size:0.78rem;color:rgba(245,240,232,0.5)">Building high-performance websites with animations</p>
         <div class="skill-bar-track"><div class="skill-bar-fill" style="--target:30%"></div></div>
-        <p class="skill-pct-label">30%</p>
+        <p class="skill-pct">30%</p>
       </div>
     </div>
   </section>
@@ -1394,79 +1233,18 @@
 
     document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
 
-    // Burger menu
-    const burger = document.getElementById('burger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
-
-    mobileNavLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        burger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Active nav highlighting
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    const sectionObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const allLinks = [...navLinks, ...mobileNavLinks];
-          allLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + entry.target.id) {
-              link.classList.add('active');
-            }
+    // Skill bar animation
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.classList.add('animated');
           });
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.2 });
 
-    sections.forEach(s => sectionObserver.observe(s));
-
-    // Skill bar — sits at target normally, resets to midpoint then re-animates to target on hover
-    document.querySelectorAll('.skill-item').forEach(item => {
-      const bar = item.querySelector('.skill-bar-fill');
-      if (!bar) return;
-      const target = getComputedStyle(bar).getPropertyValue('--target').trim();
-      const mid = parseFloat(target) / 2 + '%';
-      let isHovered = false;
-
-      // Set to full target on load (no transition)
-      bar.style.transition = 'none';
-      bar.style.width = target;
-
-      item.addEventListener('mouseenter', () => {
-        isHovered = true;
-        // Snap to midpoint instantly, then animate to target
-        bar.style.transition = 'none';
-        bar.style.width = mid;
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            if (isHovered) {
-              bar.style.transition = 'width 1.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s';
-              bar.style.width = target;
-            }
-          });
-        });
-      });
-
-      item.addEventListener('mouseleave', () => {
-        isHovered = false;
-        // Snap back to full target instantly when leaving
-        bar.style.transition = 'none';
-        bar.style.width = target;
-      });
-    });
+    document.querySelectorAll('.skills-grid').forEach(el => skillObserver.observe(el));
   </script>
 </body>
 </html>
