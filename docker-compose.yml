@@ -1,0 +1,25 @@
+services:
+  bun:
+    image: oven/bun:latest
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: bun run server.ts
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    command: >
+      sh -c "openssl req -x509 -nodes -days 3650 -newkey rsa:2048
+        -keyout /etc/ssl/private/nginx-selfsigned.key
+        -out /etc/ssl/certs/nginx-selfsigned.crt
+        -subj '/CN=meetdesignsit.com'
+        && nginx -g 'daemon off;'"
+    depends_on:
+      - bun
+    restart: unless-stopped
