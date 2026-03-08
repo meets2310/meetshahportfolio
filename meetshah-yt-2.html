@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeetShah — UX Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f0f;
+      --bg-2: #181818;
+      --bg-3: #272727;
+      --bg-hover: #3d3d3d;
+      --text: #f1f1f1;
+      --text-secondary: #aaaaaa;
+      --accent: #ff0000;
+      --accent-hover: #cc0000;
+      --border: rgba(255,255,255,0.1);
+      --sidebar-w: 240px;
+      --nav-h: 56px;
+      --font: 'Roboto', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; overflow-x: hidden; }
+
+    /* ── TOP NAV ── */
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+      background: var(--bg); z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topnav-left { display: flex; align-items: center; gap: 16px; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; border-radius: 50%; transition: background .2s; }
+    .hamburger:hover { background: var(--bg-3); }
+    .hamburger span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; }
+
+    .logo { display: flex; align-items: center; gap: 6px; text-decoration: none; }
+    .logo-text { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+    .logo-text .white { color: #ffffff; }
+    .logo-badge-img {
+      background: #ff0000;
+      border-radius: 6px;
+      width: 44px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      padding: 6px 10px;
+    }
+    .logo-badge-img img {
+      width: 100%; height: 100%; object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .topnav-center { flex: 1; max-width: 640px; margin: 0 40px; display: flex; gap: 8px; }
+    .search-wrap { flex: 1; display: flex; }
+    .search-input {
+      flex: 1; background: var(--bg); border: 1px solid #3d3d3d; border-right: none;
+      border-radius: 40px 0 0 40px; padding: 8px 16px; color: var(--text);
+      font-size: 16px; font-family: var(--font); outline: none;
+      transition: border-color .2s;
+    }
+    .search-input:focus { border-color: #1c62b9; }
+    .search-input::placeholder { color: var(--text-secondary); }
+    .search-btn {
+      background: var(--bg-3); border: 1px solid var(--bg-3); border-radius: 0 40px 40px 0;
+      padding: 0 20px; cursor: pointer; color: var(--text);
+      display: flex; align-items: center; transition: background .2s;
+    }
+    .search-btn:hover { background: var(--bg-hover); }
+
+    .topnav-right { display: flex; align-items: center; gap: 8px; }
+    .nav-icon-btn {
+      width: 40px; height: 40px; border-radius: 50%; background: none; border: none;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      color: var(--text); transition: background .2s;
+    }
+    .nav-icon-btn:hover { background: var(--bg-3); }
+    .sign-in-btn {
+      display: flex; align-items: center; gap: 8px; border: 1px solid #3ea6ff;
+      border-radius: 20px; padding: 6px 14px; background: none; cursor: pointer;
+      color: #3ea6ff; font-size: 14px; font-weight: 500; font-family: var(--font);
+      transition: background .2s;
+    }
+    .sign-in-btn:hover { background: rgba(62,166,255,0.1); }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed; top: var(--nav-h); left: 0; bottom: 0;
+      width: var(--sidebar-w); background: var(--bg);
+      overflow-y: auto; z-index: 90; padding: 12px 0;
+    }
+    .sidebar::-webkit-scrollbar { display: none; }
+
+    .sidebar-section { margin-bottom: 12px; }
+    .sidebar-divider { height: 1px; background: var(--border); margin: 12px 0; }
+    .sidebar-section-title {
+      font-size: 14px; font-weight: 600; color: var(--text);
+      padding: 8px 24px 4px; letter-spacing: 0.01em;
+    }
+
+    .sidebar-item {
+      display: flex; align-items: center; gap: 24px;
+      padding: 10px 24px; cursor: pointer; border-radius: 10px;
+      margin: 0 12px; transition: background .15s;
+      text-decoration: none; color: var(--text);
+    }
+    .sidebar-item:hover, .sidebar-item.active { background: var(--bg-3); }
+    .sidebar-item svg { flex-shrink: 0; opacity: 0.9; }
+    .sidebar-item span { font-size: 14px; }
+
+    .sidebar-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-3); border-radius: 8px; padding: 8px 12px;
+      margin: 4px 12px; cursor: pointer; transition: background .15s;
+      font-size: 13px; color: #f1f1f1; font-weight: 500;
+    }
+    .sidebar-chip:hover { background: var(--bg-hover); color: #f1f1f1; }
+    .sidebar-chip.accent { background: #f1f1f1; color: #0f0f0f; }
+
+    /* ── MAIN CONTENT ── */
+    .main { margin-left: var(--sidebar-w); margin-top: var(--nav-h); padding: 24px 24px 40px; }
+
+    /* Filter chips */
+    .filter-bar {
+      display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 20px;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-chip {
+      flex-shrink: 0; background: var(--text); color: var(--bg);
+      border: none; border-radius: 8px; padding: 6px 12px;
+      font-size: 14px; font-weight: 500; cursor: pointer; font-family: var(--font);
+      transition: background .2s;
+    }
+    .filter-chip:hover { background: #d0d0d0; color: #0f0f0f; }
+    .filter-chip.inactive {
+      background: var(--bg-3); color: var(--text);
+    }
+    .filter-chip.inactive:hover { background: var(--bg-hover); }
+
+    /* Featured / Hero card */
+    .featured-section { margin-bottom: 32px; }
+    .featured-card {
+      display: grid; grid-template-columns: 1.6fr 1fr;
+      background: var(--bg-2); border-radius: 16px; overflow: hidden;
+      transition: transform .3s ease;
+      text-decoration: none; color: inherit;
+    }
+    .featured-card:hover { transform: scale(1.005); }
+    .featured-thumb {
+      position: relative; overflow: hidden; aspect-ratio: 16/9;
+    }
+    .featured-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .featured-thumb-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(196,85,42,0.3), transparent);
+    }
+    .featured-duration {
+      position: absolute; bottom: 8px; right: 8px;
+      background: rgba(0,0,0,0.8); color: white;
+      font-size: 12px; font-weight: 600; padding: 2px 6px; border-radius: 4px;
+    }
+    .featured-info { padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+    .featured-tag {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
+    }
+    .featured-title { font-size: 22px; font-weight: 700; line-height: 1.2; }
+    .featured-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+    .featured-meta { display: flex; gap: 12px; align-items: center; }
+    .featured-meta span { font-size: 12px; color: var(--text-secondary); }
+    .featured-watch-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: white; border: none;
+      padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 600;
+      cursor: pointer; font-family: var(--font); text-decoration: none;
+      transition: background .2s; width: fit-content;
+    }
+    .featured-watch-btn:hover { background: var(--accent-hover); }
+
+    /* Section heading */
+    .section-title {
+      font-size: 18px; font-weight: 700; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* Video grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px 12px;
+      margin-bottom: 40px;
+    }
+
+    .video-card { cursor: pointer; text-decoration: none; color: inherit; }
+    .video-card:hover .video-thumb img { transform: scale(1.03); }
+
+    .video-thumb {
+      position: relative; border-radius: 12px; overflow: hidden;
+      aspect-ratio: 16/9; background: var(--bg-3); margin-bottom: 12px;
+    }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+    .video-progress {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--bg-3);
+    }
+    .video-progress-bar { height: 100%; background: var(--accent); }
+    .video-duration {
+      position: absolute; bottom: 8px; right: 8px;
+      background: rgba(0,0,0,0.85); color: white;
+      font-size: 12px; font-weight: 600; padding: 2px 6px; border-radius: 4px;
+    }
+    .video-type-badge {
+      position: absolute; top: 8px; left: 8px;
+      background: var(--accent); color: white;
+      font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    .video-meta { display: flex; gap: 12px; }
+    .video-avatar {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--accent);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; color: white;
+    }
+    .video-info { flex: 1; }
+    .video-title { font-size: 14px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+    .video-channel { font-size: 13px; color: var(--text-secondary); margin-bottom: 2px; }
+    .video-stats { font-size: 12px; color: var(--text-secondary); }
+    .video-stats span + span::before { content: ' · '; }
+
+    /* Shorts-style row */
+    .shorts-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px; margin-bottom: 40px;
+    }
+    .short-card { cursor: pointer; text-decoration: none; color: inherit; }
+    .short-thumb {
+      border-radius: 12px; overflow: hidden; aspect-ratio: 9/16;
+      background: var(--bg-3); margin-bottom: 8px; position: relative;
+    }
+    .short-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .short-card:hover .short-thumb img { transform: scale(1.04); }
+    .short-label {
+      position: absolute; bottom: 8px; left: 8px; right: 8px;
+      font-size: 12px; font-weight: 600; color: white;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+    .short-title { font-size: 13px; font-weight: 500; line-height: 1.3; }
+    .short-views { font-size: 12px; color: var(--text-secondary); }
+
+    /* Channel banner */
+    .channel-section {
+      background: var(--bg-2); border-radius: 16px; padding: 24px;
+      margin-bottom: 40px; display: flex; align-items: center; gap: 24px;
+    }
+    .channel-avatar {
+      width: 80px; height: 80px; border-radius: 50%; background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .channel-info { flex: 1; }
+    .channel-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .channel-handle { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+    .channel-stats { display: flex; gap: 16px; }
+    .channel-stats span { font-size: 13px; color: var(--text-secondary); }
+    .channel-stats strong { color: var(--text); }
+    .subscribe-btn {
+      background: var(--text); color: var(--bg); border: none;
+      padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 700;
+      cursor: pointer; font-family: var(--font); transition: background .2s;
+    }
+    .subscribe-btn:hover { background: #d0d0d0; color: #0f0f0f; }
+    .subscribe-btn.subscribed {
+      background: var(--bg-3); color: var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-info { padding: 16px; }
+    }
+    @media (max-width: 800px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 16px; }
+      .topnav-center { display: none; }
+      .video-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="topnav">
+    <div class="topnav-left">
+      <div class="hamburger" onclick="void(0)">
+        <span></span><span></span><span></span>
+      </div>
+      <a href="index.html" class="logo">
+        <span class="logo-badge-img">
+          <img src="meet_logo.png" alt="MS" />
+        </span>
+        <span class="logo-text"><span class="white">MeetShah</span></span>
+      </a>
+    </div>
+
+    <div class="topnav-center">
+      <div class="search-wrap">
+        <input class="search-input" type="text" placeholder="Search case studies, skills, tools..." />
+        <button class="search-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="topnav-right">
+      <button class="nav-icon-btn" title="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
+      <a href="mailto:smeet2310@gmail.com" class="sign-in-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Hire Me
+      </a>
+    </div>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <a href="#" class="sidebar-item active">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="#case-studies" class="sidebar-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <span>Case Studies</span>
+      </a>
+      <a href="#skills" class="sidebar-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>Skills</span>
+      </a>
+      <a href="index.html" class="sidebar-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <span>Real Portfolio ↗</span>
+      </a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">You</div>
+      <a href="mailto:smeet2310@gmail.com" class="sidebar-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Contact Me</span>
+      </a>
+      <a href="https://drive.google.com/file/d/1pCSZ3n1XypAVHlcVcavEj408NUcpsYtz/view" target="_blank" class="sidebar-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        <span>Resume</span>
+      </a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Filter by</div>
+      <div class="sidebar-chip accent">🏥 HealthTech</div>
+      <div class="sidebar-chip">📚 EdTech</div>
+      <div class="sidebar-chip">🏫 Social Impact</div>
+      <div class="sidebar-chip">📱 Mobile</div>
+      <div class="sidebar-chip">🖥️ Web App</div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Tools</div>
+      <div class="sidebar-chip">✦ Figma</div>
+      <div class="sidebar-chip">✦ Notion</div>
+      <div class="sidebar-chip">✦ Miro</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <button class="filter-chip">All</button>
+      <button class="filter-chip inactive">HealthTech</button>
+      <button class="filter-chip inactive">EdTech</button>
+      <button class="filter-chip inactive">Social Impact</button>
+      <button class="filter-chip inactive">Mobile</button>
+      <button class="filter-chip inactive">Enterprise</button>
+      <button class="filter-chip inactive">UX Research</button>
+      <button class="filter-chip inactive">Design Systems</button>
+      <button class="filter-chip inactive">Wireframing</button>
+    </div>
+
+    <!-- Channel banner -->
+    <div class="channel-section">
+      <div class="channel-avatar">MS</div>
+      <div class="channel-info">
+        <div class="channel-name">Meet Shah</div>
+        <div class="channel-handle">@meetdesignsit · UX/UI Designer · Dublin, Ireland</div>
+        <div class="channel-stats">
+          <span><strong>3</strong> Case Studies</span>
+          <span><strong>MSc</strong> HCI — UCD</span>
+          <span><strong>Open</strong> to opportunities</span>
+        </div>
+      </div>
+      <button class="subscribe-btn" onclick="this.textContent = this.textContent === 'Hire Me' ? '✓ Saved' : 'Hire Me'; this.classList.toggle('subscribed')">Hire Me</button>
+    </div>
+
+    <!-- Featured -->
+    <div class="featured-section">
+      <div class="section-title">⭐ Featured</div>
+      <a href="ark.html" class="featured-card">
+        <div class="featured-thumb">
+          <img src="https://framerusercontent.com/images/cBtyWY9IDDKYR43TYyd1rzf5A.png" alt="ARK" />
+          <div class="featured-thumb-overlay"></div>
+          <div class="featured-duration">14 weeks</div>
+        </div>
+        <div class="featured-info">
+          <div class="featured-tag">🏥 HealthTech · Enterprise Dashboard</div>
+          <div class="featured-title">ARK — Healthcare Risk Assessment Platform</div>
+          <div class="featured-desc">Redesigning a legacy clinical dashboard into a faster, clearer decision experience for healthcare professionals under pressure.</div>
+          <div class="featured-meta">
+            <span>Lead UX/UI Designer</span>
+            <span>·</span>
+            <span>Figma · Notion</span>
+            <span>·</span>
+            <span>Jun 2024</span>
+          </div>
+          <a href="ark.html" class="featured-watch-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            View Case Study
+          </a>
+        </div>
+      </a>
+    </div>
+
+    <!-- Case Studies grid -->
+    <div id="case-studies">
+      <div class="section-title">📁 All Case Studies</div>
+      <div class="video-grid">
+
+        <!-- ARK -->
+        <a href="ark.html" class="video-card">
+          <div class="video-thumb">
+            <img src="https://framerusercontent.com/images/cBtyWY9IDDKYR43TYyd1rzf5A.png" alt="ARK" />
+            <div class="video-type-badge">HealthTech</div>
+            <div class="video-duration">14 wks</div>
+            <div class="video-progress"><div class="video-progress-bar" style="width:70%"></div></div>
+          </div>
+          <div class="video-meta">
+            <div class="video-avatar">MS</div>
+            <div class="video-info">
+              <div class="video-title">ARK — Healthcare Risk Assessment Platform</div>
+              <div class="video-channel">Meet Shah · Lead UX/UI Designer</div>
+              <div class="video-stats">
+                <span>2 Designers + 2 Researchers</span>
+                <span>Jun 2024</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Aiducate -->
+        <a href="aiducate.html" class="video-card">
+          <div class="video-thumb">
+            <img src="https://framerusercontent.com/images/tvzg3yCKOrlTc1wiMs7pH3Dfg.jpg" alt="Aiducate" />
+            <div class="video-type-badge">EdTech</div>
+            <div class="video-duration">8 wks</div>
+            <div class="video-progress"><div class="video-progress-bar" style="width:40%"></div></div>
+          </div>
+          <div class="video-meta">
+            <div class="video-avatar">MS</div>
+            <div class="video-info">
+              <div class="video-title">Aiducate — Educational Resource Platform</div>
+              <div class="video-channel">Meet Shah · Lead UX Designer</div>
+              <div class="video-stats">
+                <span>3 Designers</span>
+                <span>Jan 2024</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- UniCare -->
+        <a href="unicare.html" class="video-card">
+          <div class="video-thumb">
+            <img src="https://framerusercontent.com/images/HB14Cn1DuWRnVB53HjcvQ0Nauo.png" alt="UniCare" />
+            <div class="video-type-badge">HealthTech</div>
+            <div class="video-duration">6 wks</div>
+            <div class="video-progress"><div class="video-progress-bar" style="width:20%"></div></div>
+          </div>
+          <div class="video-meta">
+            <div class="video-avatar">MS</div>
+            <div class="video-info">
+              <div class="video-title">UniCare — Campus Healthcare Platform</div>
+              <div class="video-channel">Meet Shah · Lead UX Designer</div>
+              <div class="video-stats">
+                <span>3 Designers + 1 Research Lead</span>
+                <span>Sep 2023</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Coming Soon placeholder -->
+        <div class="video-card" style="opacity:0.5; cursor:default;">
+          <div class="video-thumb" style="background: var(--bg-3); display:flex; align-items:center; justify-content:center;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="video-meta">
+            <div class="video-avatar" style="background:var(--bg-3); color:var(--text-secondary)">?</div>
+            <div class="video-info">
+              <div class="video-title" style="color:var(--text-secondary)">New Case Study — Coming Soon</div>
+              <div class="video-channel">Meet Shah</div>
+              <div class="video-stats"><span>In progress...</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Skills as Shorts -->
+    <div id="skills">
+      <div class="section-title">⚡ Skills — Quick Hits</div>
+      <div class="shorts-grid">
+        <div class="short-card">
+          <div class="short-thumb" style="background: linear-gradient(135deg, #7B2FD4, #A855F7);">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:52px;">🎨</div>
+            <div class="short-label">Figma</div>
+          </div>
+          <div class="short-title">Figma</div>
+          <div class="short-views">Expert · 90%</div>
+        </div>
+        <div class="short-card">
+          <div class="short-thumb" style="background: linear-gradient(135deg, #191919, #404040);">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:52px;font-weight:900;color:white;letter-spacing:-2px;">N</div>
+            <div class="short-label">Notion</div>
+          </div>
+          <div class="short-title">Notion</div>
+          <div class="short-views">Advanced · 65%</div>
+        </div>
+        <div class="short-card">
+          <div class="short-thumb" style="background: linear-gradient(135deg, #001E6C, #0057FF);">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:52px;">🖌️</div>
+            <div class="short-label">Photoshop</div>
+          </div>
+          <div class="short-title">Photoshop</div>
+          <div class="short-views">Intermediate · 70%</div>
+        </div>
+        <div class="short-card">
+          <div class="short-thumb" style="background: linear-gradient(135deg, #8B1A00, #FF4D00);">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:52px;">✏️</div>
+            <div class="short-label">Illustrator</div>
+          </div>
+          <div class="short-title">Illustrator</div>
+          <div class="short-views">Intermediate · 60%</div>
+        </div>
+        <div class="short-card">
+          <div class="short-thumb" style="background: linear-gradient(135deg, #1A3A00, #4D9900);">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:52px;">🗺️</div>
+            <div class="short-label">Miro</div>
+          </div>
+          <div class="short-title">Miro</div>
+          <div class="short-views">Intermediate · 50%</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Filter chip toggle
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.add('inactive'));
+        chip.classList.remove('inactive');
+      });
+    });
+
+    // Sidebar chip toggle
+    document.querySelectorAll('.sidebar-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('accent');
+      });
+    });
+  </script>
+</body>
+</html>
