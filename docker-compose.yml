@@ -4,9 +4,3 @@ services:
     ports:
       - "3001:3001"
     restart: unless-stopped
-
-  backend:
-    build: ./backend
-    ports:
-      - "8000:8000"
-    restart: unless-stopped
