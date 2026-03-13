@@ -374,7 +374,7 @@ TONE GUIDE:
       const chip = document.createElement('button');
       chip.className = 'ms-suggestion-chip';
       chip.textContent = text;
-      chip.onclick = () => sendMessage(text);
+      chip.onclick = (e) => { e.stopPropagation(); sendMessage(text); };
       container.appendChild(chip);
     });
   }
