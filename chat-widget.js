@@ -409,7 +409,7 @@ TONE GUIDE:
       });
 
       const data = await res.json();
-      const reply = data.reply || "Hmm, I couldn't think of a response — which honestly is a first for me.";
+      const reply = data.reply || "fuck";
 
       removeTyping();
       addMessage(reply, 'bot');
