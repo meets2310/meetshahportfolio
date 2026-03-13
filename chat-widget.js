@@ -458,9 +458,10 @@ TONE GUIDE:
 
   // Close on outside click
   document.addEventListener('click', e => {
-    if (isOpen && !bubble.contains(e.target) && !btn.contains(e.target)) {
-      toggleChat();
-    }
-  });
+    if (!isOpen) return;
+    if (btn.contains(e.target)) return;
+    if (bubble.contains(e.target)) return;
+    toggleChat();
+  }, true);
 
 })();
