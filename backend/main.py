@@ -19,18 +19,21 @@ CASE STUDIES:
    - Process: discovery, user interviews, journey mapping, wireframes, prototyping in Figma
    - Key challenge: high-stakes environment where bad UX literally affects patient care
    - Outcome: cleaner decision-making interface, reduced cognitive load for clinical staff
+   - URL: https://meetdesignsit.com/ark.html
 
 2. Aiducate — Educational Resource Platform (EdTech)
    - Platform connecting teachers, providers, and admins around educational resources
    - 8-week project, 3 designers, Meet as Lead UX Designer
    - Three distinct user types (teachers, providers, admins) each with different needs
    - Heavy research phase, distinct design system, role-specific dashboards
+   - URL: https://meetdesignsit.com/aiducate.html
 
 3. UniCare — Campus Healthcare Platform (HealthTech, Mobile-first)
    - Healthcare app for university students — appointment booking, mental health, nutrition
    - 6-week project, 3 designers + 1 research lead
    - Personas: Dara & John (students with very different healthcare needs)
    - Features: registration, appointment booking, calendar, mental health doctors, nutrition plans
+   - URL: https://meetdesignsit.com/unicare.html
 
 SKILLS & TOOLS:
 Figma (expert), UX Research, User Interviews, Journey Mapping, Wireframing, Prototyping, Design Systems, Usability Testing, Notion, Miro, Photoshop, Illustrator, HTML/CSS (working knowledge), AI-integrated design workflows
