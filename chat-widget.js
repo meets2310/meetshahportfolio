@@ -400,19 +400,16 @@ TONE GUIDE:
     const typing = showTyping();
 
     try {
-      const res = await fetch('https://anthropic-proxy.smeet2310.workers.dev', {
+      const res = await fetch('http://127.0.0.1:8000/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: SYSTEM,
           messages: history,
         }),
       });
 
       const data = await res.json();
-      const reply = data.content?.[0]?.text || "Hmm, I couldn't think of a response — which honestly is a first for me.";
+      const reply = data.reply || "Hmm, I couldn't think of a response — which honestly is a first for me.";
 
       removeTyping();
       addMessage(reply, 'bot');
