@@ -272,6 +272,7 @@
 
   document.body.appendChild(btn);
   document.body.appendChild(bubble);
+  bubble.addEventListener('click', e => e.stopPropagation());
 
   // ── SYSTEM PROMPT ───────────────────────────────────────────
   const SYSTEM = `You are the portfolio assistant for Meet Shah, a UX/UI designer. You speak on his behalf in a friendly, conversational tone with a dash of dry wit and sarcasm — but never rude, never arrogant, never undermining to the person you're talking to. Think: helpful colleague who's also quietly the funniest person in the room.
