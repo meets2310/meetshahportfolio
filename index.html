@@ -2,9 +2,24 @@
 <html lang="en">
 
 <head>
+  <script>
+    (function () { var t = localStorage.getItem('ms-theme') || 'light'; document.documentElement.setAttribute('data-theme', t); })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meet Shah — UX/UI Designer</title>
+  <meta name="description"
+    content="Meet Shah — UX/UI Designer based in Dublin, Ireland. MSc HCI from UCD. Case studies in HealthTech and EdTech." />
+  <meta property="og:title" content="Meet Shah — UX/UI Designer" />
+  <meta property="og:description"
+    content="UX/UI Designer based in Dublin. Case studies in HealthTech and EdTech. Open to new opportunities worldwide." />
+  <meta property="og:image" content="https://framerusercontent.com/images/XHIZXZxjIVyxonhrdHvTERFwQ.png" />
+  <meta property="og:url" content="https://meetdesignsit.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Meet Shah — UX/UI Designer" />
+  <meta name="twitter:description" content="UX/UI Designer based in Dublin. Case studies in HealthTech and EdTech." />
+  <meta name="twitter:image" content="https://framerusercontent.com/images/XHIZXZxjIVyxonhrdHvTERFwQ.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -296,10 +311,11 @@
 
     .hero-image-wrap img {
       width: 100%;
-      height: 100%;
+      height: 115%;
       object-fit: cover;
       object-position: top center;
       filter: sepia(15%) contrast(1.05);
+      will-change: transform;
     }
 
     .hero-image-overlay {
@@ -981,50 +997,55 @@
       display: none;
       flex-direction: column;
       justify-content: center;
-      gap: 5px;
-      width: 36px;
-      height: 36px;
+      align-items: center;
+      gap: 0;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
       background: none;
       border: none;
-      padding: 4px;
-      z-index: 200;
+      padding: 0;
+      z-index: 300;
+      position: relative;
     }
 
     .burger span {
       display: block;
+      width: 24px;
       height: 2px;
       background: var(--accent);
       border-radius: 2px;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, width 0.3s ease;
-      transform-origin: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, background 0.3s ease;
     }
 
     .burger span:nth-child(1) {
-      width: 24px;
+      top: 13px;
     }
 
     .burger span:nth-child(2) {
-      width: 18px;
+      top: 19px;
     }
 
     .burger span:nth-child(3) {
-      width: 24px;
+      top: 25px;
     }
 
     .burger.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-      width: 24px;
+      transform: translateX(-50%) translateY(6px) rotate(45deg);
+      background: #010101;
     }
 
     .burger.open span:nth-child(2) {
       opacity: 0;
-      transform: scaleX(0);
+      transform: translateX(-50%) scaleX(0);
     }
 
     .burger.open span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-      width: 24px;
+      transform: translateX(-50%) translateY(-6px) rotate(-45deg);
+      background: #010101;
     }
 
     /* Mobile drawer */
@@ -1036,7 +1057,7 @@
       right: 0;
       bottom: 0;
       background: #FFFFF8;
-      z-index: 150;
+      z-index: 160;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -1173,11 +1194,325 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ── DARK MODE ── */
+    [data-theme="dark"] {
+      --cream: #141210;
+      --ink: #F0EBE3;
+      --warm-mid: #A89880;
+      --soft-line: rgba(240, 235, 227, 0.1);
+    }
+
+    [data-theme="dark"] body {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] nav {
+      background: #1C1916;
+      border-bottom-color: rgba(240, 235, 227, 0.08);
+    }
+
+    [data-theme="dark"] .nav-logo {
+      color: var(--accent);
+    }
+
+    [data-theme="dark"] .nav-links a {
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .mobile-menu {
+      background: #1C1916;
+      border-color: rgba(240, 235, 227, 0.08);
+    }
+
+    [data-theme="dark"] .btn-primary {
+      background: var(--ink);
+      color: #141210;
+    }
+
+    [data-theme="dark"] .btn-primary:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    [data-theme="dark"] .btn-secondary {
+      border-color: rgba(240, 235, 227, 0.2);
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .project-card {
+      background: #1C1916;
+      border-color: rgba(240, 235, 227, 0.06);
+    }
+
+    [data-theme="dark"] .project-card:hover {
+      border-color: rgba(196, 85, 42, 0.4);
+    }
+
+    [data-theme="dark"] .skills-section {
+      background: #0D0C0A;
+    }
+
+    [data-theme="dark"] .skill-item {
+      background: rgba(240, 235, 227, 0.04);
+    }
+
+    [data-theme="dark"] .skill-item:hover {
+      background: rgba(240, 235, 227, 0.08);
+    }
+
+    [data-theme="dark"] .skill-item:hover .skill-name {
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .divider {
+      background: rgba(240, 235, 227, 0.08);
+    }
+
+    [data-theme="dark"] .case-hero {
+      background: #141210;
+    }
+
+    [data-theme="dark"] .case-section {
+      background: #141210;
+    }
+
+    [data-theme="dark"] .case-section.alt {
+      background: #1C1916;
+    }
+
+    [data-theme="dark"] .process-step {
+      background: #1C1916;
+      border-color: rgba(240, 235, 227, 0.06);
+    }
+
+    [data-theme="dark"] .insight-card {
+      background: #1C1916;
+      border-color: rgba(196, 85, 42, 0.2);
+    }
+
+    [data-theme="dark"] .outcome-card {
+      background: #1C1916;
+    }
+
+    [data-theme="dark"] .design-card {
+      background: #1C1916;
+      border-color: rgba(240, 235, 227, 0.06);
+    }
+
+    [data-theme="dark"] .next-project {
+      background: #0D0C0A;
+    }
+
+    [data-theme="dark"] blockquote {
+      border-color: var(--accent);
+      background: rgba(196, 85, 42, 0.08);
+    }
+
+    /* Toggle button */
+    .theme-pill {
+      display: flex;
+      align-items: center;
+      background: var(--soft-line);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 0;
+      position: relative;
+      flex-shrink: 0;
+      border: 1.5px solid var(--soft-line);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    [data-theme="dark"] .theme-pill {
+      background: rgba(240, 235, 227, 0.08);
+      border-color: rgba(240, 235, 227, 0.08);
+    }
+
+    .theme-pill-knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #FFFFF8;
+      box-shadow: 0 1px 4px rgba(26, 22, 18, 0.15);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+
+    [data-theme="dark"] .theme-pill-knob {
+      transform: translateX(28px);
+      background: #2A2520;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .theme-pill-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      color: var(--warm-mid);
+      transition: color 0.3s;
+      padding: 0;
+    }
+
+    .theme-pill-btn.active {
+      color: var(--accent);
+    }
+
+    .theme-pill-btn:hover {
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .theme-pill-btn {
+      color: rgba(240, 235, 227, 0.3);
+    }
+
+    [data-theme="dark"] .theme-pill-btn.active {
+      color: var(--accent-light);
+    }
+
+    [data-theme="dark"] .theme-pill-btn:hover {
+      color: var(--ink);
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--accent);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      z-index: 9999;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* ── CONTACT FORM ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background: transparent;
+      border: 1.5px solid var(--soft-line);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+      border-radius: 2px;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--warm-mid);
+      opacity: 0.6;
+    }
+
+    [data-theme="dark"] .form-field input,
+    [data-theme="dark"] .form-field textarea {
+      color: var(--ink);
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 0.85rem 2rem;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.25s, transform 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-success {
+      display: none;
+      padding: 1rem;
+      border: 1.5px solid #7ecb8a;
+      color: #7ecb8a;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
 <body>
 
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
@@ -1190,6 +1525,29 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="theme-pill" id="theme-pill">
+      <div class="theme-pill-knob"></div>
+      <button class="theme-pill-btn active" id="btn-light" aria-label="Light mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+      <button class="theme-pill-btn" id="btn-dark" aria-label="Dark mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+    </div>
     <button class="burger" id="burger" aria-label="Open menu">
       <span></span>
       <span></span>
@@ -1207,7 +1565,7 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="main-content">
     <div class="hero-left">
       <div class="hero-status">
         <span class="status-dot"></span>
@@ -1249,8 +1607,7 @@
 
       <a href="ark.html" class="project-card reveal">
         <div class="project-thumb-wrap">
-          <img class="project-thumb"
-            src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449110/main_pic_jdovbt.jpg"
+          <img class="project-thumb" src="https://framerusercontent.com/images/cBtyWY9IDDKYR43TYyd1rzf5A.png"
             alt="ARK Healthcare" />
           <div class="project-overlay"></div>
         </div>
@@ -1265,8 +1622,7 @@
 
       <a href="aiducate.html" class="project-card reveal">
         <div class="project-thumb-wrap">
-          <img class="project-thumb"
-            src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449111/Aiducate_Cover_laztvp.jpg"
+          <img class="project-thumb" src="https://framerusercontent.com/images/tvzg3yCKOrlTc1wiMs7pH3Dfg.jpg"
             alt="Aiducate" />
           <div class="project-overlay"></div>
         </div>
@@ -1281,8 +1637,7 @@
 
       <a href="unicare.html" class="project-card reveal">
         <div class="project-thumb-wrap">
-          <img class="project-thumb"
-            src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449110/Unicare_Cover_pic_tvppic.jpg"
+          <img class="project-thumb" src="https://framerusercontent.com/images/HB14Cn1DuWRnVB53HjcvQ0Nauo.png"
             alt="UniCare" />
           <div class="project-overlay"></div>
         </div>
@@ -1323,7 +1678,8 @@
           and the research rigour of a <strong>UCD HCI graduate</strong> to every problem I touch.
         </p>
         <div style="margin-top:2.5rem;">
-          <a href="mailto:smeet2310@gmail.com" class="btn-primary">Get in touch →</a>
+          <a href="/cdn-cgi/l/email-protection#54273931312066676564143339353d387a373b39" class="btn-primary">Get in
+            touch →</a>
         </div>
       </div>
       <div class="about-right">
@@ -1627,20 +1983,39 @@
           <span class="contact-label">Status</span>
           <span class="contact-value" style="color:#7ecb8a;">Open to opportunities</span>
         </div>
-        <div class="contact-actions">
-          <a href="mailto:smeet2310@gmail.com" class="btn-light">Send Email →</a>
-          <a href="https://drive.google.com/file/d/1pCSZ3n1XypAVHlcVcavEj408NUcpsYtz/view?usp=sharing" target="_blank"
-            class="btn-outline-light">Resume ↗</a>
-        </div>
+        <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-field">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="4" placeholder="Tell me about the opportunity..."
+              required></textarea>
+          </div>
+          <div class="form-success" id="formSuccess">Thanks! I'll get back to you shortly. 👋</div>
+          <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+            <button type="submit" class="form-submit" id="formSubmit">Send Message →</button>
+            <a href="https://drive.google.com/file/d/1pCSZ3n1XypAVHlcVcavEj408NUcpsYtz/view?usp=sharing" target="_blank"
+              class="btn-outline-light">Resume ↗</a>
+          </div>
+        </form>
       </div>
     </div>
   </section>
 
   <footer>
-    <span class="footer-copy">© 2025 Meet Shah. All rights reserved.</span>
+    <span class="footer-copy">© 2026 Meet Shah. All rights reserved.</span>
     <span class="footer-made">Designed & built with care · Dublin, Ireland</span>
   </footer>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     // Custom cursor
     const cursor = document.getElementById('cursor');
@@ -1748,21 +2123,4 @@
           requestAnimationFrame(() => {
             if (isHovered) {
               bar.style.transition = 'width 1.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s';
-              bar.style.width = target;
-            }
-          });
-        });
-      });
-
-      item.addEventListener('mouseleave', () => {
-        isHovered = false;
-        // Snap back to full target instantly when leaving
-        bar.style.transition = 'none';
-        bar.style.width = target;
-      });
-    });
-  </script>
-  <script src="chat-widget.js"></script>
-</body>
-
-</html>
+              bar.s
