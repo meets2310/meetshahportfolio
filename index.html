@@ -30,6 +30,147 @@
       --font-body: 'DM Sans', sans-serif;
     }
 
+    /* ── DARK MODE VARIABLES ── */
+    [data-theme="dark"] {
+      --cream: #141210;
+      --ink: #F0EBE3;
+      --warm-mid: #A89880;
+      --soft-line: rgba(240, 235, 227, 0.1);
+    }
+
+    [data-theme="dark"] body {
+      background: #141210;
+      color: #F0EBE3;
+    }
+
+    [data-theme="dark"] nav {
+      background: #1C1916;
+      box-shadow: 0 1px 0 rgba(240, 235, 227, 0.06), 0 2px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    [data-theme="dark"] .mobile-menu {
+      background: #1C1916;
+    }
+
+    [data-theme="dark"] .mobile-menu-item {
+      border-color: rgba(240, 235, 227, 0.06);
+    }
+
+    [data-theme="dark"] .testimonial-card {
+      background: #1C1916;
+      border-color: rgba(240, 235, 227, 0.08);
+    }
+
+    [data-theme="dark"] .project-card {
+      background: #1C1916;
+    }
+
+    [data-theme="dark"] .project-card:hover {
+      box-shadow: 0 8px 36px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="dark"] .hero-image-overlay {
+      background: linear-gradient(to right, #141210 0%, transparent 30%);
+    }
+
+    [data-theme="dark"] .testimonials-track-wrap::before {
+      background: linear-gradient(to right, #141210, transparent);
+    }
+
+    [data-theme="dark"] .testimonials-track-wrap::after {
+      background: linear-gradient(to left, #141210, transparent);
+    }
+
+    [data-theme="dark"] .btn-primary {
+      background: #F0EBE3;
+      color: #141210;
+    }
+
+    [data-theme="dark"] .btn-primary:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    [data-theme="dark"] .btn-secondary {
+      border-color: rgba(240, 235, 227, 0.2);
+      color: #F0EBE3;
+    }
+
+    [data-theme="dark"] .divider {
+      background: rgba(240, 235, 227, 0.08);
+    }
+
+    /* ── THEME PILL ── */
+    .theme-pill {
+      display: flex;
+      align-items: center;
+      background: rgba(26, 22, 18, 0.06);
+      border-radius: 999px;
+      padding: 3px;
+      position: relative;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(26, 22, 18, 0.1);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    [data-theme="dark"] .theme-pill {
+      background: rgba(240, 235, 227, 0.06);
+      border-color: rgba(240, 235, 227, 0.1);
+    }
+
+    .theme-pill-knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #FFFFF8;
+      box-shadow: 0 1px 6px rgba(26, 22, 18, 0.2);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s, box-shadow 0.3s;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    [data-theme="dark"] .theme-pill-knob {
+      transform: translateX(28px);
+      background: #2C2520;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .theme-pill-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      color: #6B5F52;
+      opacity: 0.4;
+      transition: color 0.3s, opacity 0.3s;
+      padding: 0;
+    }
+
+    .theme-pill-btn.active {
+      color: #C4552A;
+      opacity: 1;
+    }
+
+    [data-theme="dark"] .theme-pill-btn {
+      color: #A89880;
+      opacity: 0.35;
+    }
+
+    [data-theme="dark"] .theme-pill-btn.active {
+      color: #E8A98A;
+      opacity: 1;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -42,6 +183,7 @@
       line-height: 1.6;
       cursor: none;
       overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
     }
 
     /* Custom cursor */
@@ -99,6 +241,7 @@
       padding: 1.25rem 4rem;
       background: #FFFFF8;
       box-shadow: 0 1px 0 rgba(26, 22, 18, 0.08), 0 2px 16px rgba(26, 22, 18, 0.06);
+      transition: background 0.3s, box-shadow 0.3s;
     }
 
     .nav-logo {
@@ -135,9 +278,17 @@
       color: #010101;
     }
 
+    [data-theme="dark"] .nav-links a:hover {
+      color: #ffffff;
+    }
+
     .nav-links a.active {
       color: #010101;
       font-weight: 700;
+    }
+
+    [data-theme="dark"] .nav-links a.active {
+      color: #ffffff;
     }
 
     /* Hero */
@@ -306,6 +457,7 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(to right, var(--cream) 0%, transparent 30%);
+      transition: background 0.3s;
     }
 
     .hero-scroll-hint {
@@ -376,6 +528,7 @@
       height: 1px;
       background: var(--soft-line);
       margin: 0;
+      transition: background 0.3s;
     }
 
     /* Projects */
@@ -396,7 +549,7 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 2px 12px rgba(26, 22, 18, 0.07);
-      transition: box-shadow 0.35s ease, transform 0.35s ease;
+      transition: box-shadow 0.35s ease, transform 0.35s ease, background 0.3s;
       margin: 0.75rem;
     }
 
@@ -490,7 +643,7 @@
       color: var(--ink);
     }
 
-    /* About / Story */
+    /* About */
     .about-section {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -571,6 +724,27 @@
     /* Skills */
     .skills-section {
       background: var(--ink);
+      transition: background 0.3s;
+    }
+
+    [data-theme="dark"] .skills-section {
+      background: #1C1916;
+    }
+
+    [data-theme="dark"] .skills-section .section-label {
+      color: var(--accent);
+    }
+
+    [data-theme="dark"] .skills-section .section-title {
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .skills-section .section-title em {
+      color: var(--accent);
+    }
+
+    [data-theme="dark"] .skills-section {
+      background: #1C1916;
     }
 
     .skills-section .section-label {
@@ -660,6 +834,10 @@
       margin-bottom: 0.4rem;
       letter-spacing: 0.01em;
       transition: color 0.3s;
+    }
+
+    [data-theme="dark"] .skill-name {
+      color: #F0EBE3;
     }
 
     .skill-subtext {
@@ -761,6 +939,7 @@
       padding: 2.5rem;
       border: 1px solid var(--soft-line);
       position: relative;
+      transition: background 0.3s, border-color 0.3s;
     }
 
     .testimonial-quote {
@@ -812,6 +991,11 @@
       min-height: 60vh;
       display: flex;
       align-items: center;
+      transition: background 0.3s;
+    }
+
+    [data-theme="dark"] .contact-section {
+      background: #1C1916;
     }
 
     .contact-inner {
@@ -835,6 +1019,10 @@
       color: var(--accent-light);
     }
 
+    [data-theme="dark"] .contact-title {
+      color: #F0EBE3;
+    }
+
     .contact-right {
       display: flex;
       flex-direction: column;
@@ -856,6 +1044,10 @@
       color: rgba(245, 240, 232, 0.35);
     }
 
+    [data-theme="dark"] .contact-label {
+      color: rgba(240, 235, 227, 0.55);
+    }
+
     .contact-value {
       font-family: var(--font-display);
       font-size: 1.2rem;
@@ -863,6 +1055,10 @@
       text-decoration: none;
       transition: color 0.2s;
       cursor: none;
+    }
+
+    [data-theme="dark"] .contact-value {
+      color: #F0EBE3;
     }
 
     .contact-value:hover {
@@ -897,6 +1093,15 @@
       transform: translateY(-2px);
     }
 
+    [data-theme="dark"] .btn-light {
+      background: #F0EBE3;
+      color: #141210;
+    }
+
+    [data-theme="dark"] .btn-light:hover {
+      background: var(--accent-light);
+    }
+
     .btn-outline-light {
       display: inline-flex;
       align-items: center;
@@ -920,6 +1125,16 @@
       transform: translateY(-2px);
     }
 
+    [data-theme="dark"] .btn-outline-light {
+      color: #F0EBE3;
+      border-color: rgba(240, 235, 227, 0.4);
+    }
+
+    [data-theme="dark"] .btn-outline-light:hover {
+      border-color: var(--accent-light);
+      color: var(--accent-light);
+    }
+
     /* Footer */
     footer {
       padding: 2rem 4rem;
@@ -928,6 +1143,11 @@
       align-items: center;
       background: var(--ink);
       border-top: 1px solid rgba(245, 240, 232, 0.08);
+      transition: background 0.3s;
+    }
+
+    [data-theme="dark"] footer {
+      background: #1C1916;
     }
 
     .footer-copy {
@@ -940,6 +1160,14 @@
       font-size: 0.72rem;
       letter-spacing: 0.1em;
       color: rgba(245, 240, 232, 0.3);
+    }
+
+    [data-theme="dark"] .footer-copy {
+      color: rgba(240, 235, 227, 0.6);
+    }
+
+    [data-theme="dark"] .footer-made {
+      color: rgba(240, 235, 227, 0.6);
     }
 
     /* Animations */
@@ -976,7 +1204,7 @@
       transform: translateY(0);
     }
 
-    /* Burger menu */
+    /* Burger */
     .burger {
       display: none;
       flex-direction: column;
@@ -1042,7 +1270,7 @@
       align-items: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.35s ease;
+      transition: opacity 0.35s ease, background 0.3s;
     }
 
     .mobile-menu.open {
@@ -1055,6 +1283,7 @@
       text-align: center;
       padding: 1.5rem 2rem;
       border-bottom: 1px solid rgba(26, 22, 18, 0.08);
+      transition: border-color 0.3s;
     }
 
     .mobile-menu-item:first-child {
@@ -1166,6 +1395,10 @@
       .cursor-ring {
         display: none;
       }
+
+      .theme-pill {
+        display: none;
+      }
     }
 
     @media (max-width: 600px) {
@@ -1190,6 +1423,29 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="theme-pill" id="theme-pill">
+      <div class="theme-pill-knob"></div>
+      <button class="theme-pill-btn active" id="btn-light" aria-label="Light mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+      <button class="theme-pill-btn" id="btn-dark" aria-label="Dark mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+    </div>
     <button class="burger" id="burger" aria-label="Open menu">
       <span></span>
       <span></span>
@@ -1328,7 +1584,6 @@
       </div>
       <div class="about-right">
         <div class="timeline">
-
           <div class="timeline-item">
             <div class="timeline-year">2018–21</div>
             <div>
@@ -1339,7 +1594,6 @@
                 feasibility of any design decision.</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-year">2021–25</div>
             <div>
@@ -1349,7 +1603,6 @@
                 Mastered the balance between business goals and user needs to create impactful, scalable interfaces.</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-year">2023–24</div>
             <div>
@@ -1359,7 +1612,6 @@
                 the ability to back design decisions with data and psychological principles of interaction.</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-year">2025</div>
             <div>
@@ -1370,7 +1622,6 @@
                 enterprise problems.</p>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="timeline-year">Now</div>
             <div>
@@ -1380,7 +1631,6 @@
                 on creating accessible, user-first experiences where design meets strategy.</p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -1468,7 +1718,6 @@
     </div>
     <div class="testimonials-track-wrap">
       <div class="testimonials-track" id="testimonialsTrack">
-        <!-- Set 1 -->
         <div class="testimonial-card">
           <div class="testimonial-quote">"</div>
           <p class="testimonial-text">Working with Meet has been an amazing experience! He deeply understands client
@@ -1536,7 +1785,7 @@
             </div>
           </div>
         </div>
-        <!-- Set 2 (duplicate for infinite scroll) -->
+        <!-- Duplicate set for infinite scroll -->
         <div class="testimonial-card">
           <div class="testimonial-quote">"</div>
           <p class="testimonial-text">Working with Meet has been an amazing experience! He deeply understands client
@@ -1642,6 +1891,45 @@
   </footer>
 
   <script>
+    // ── THEME — detect system preference, respect saved choice ──
+    (function () {
+      var saved = localStorage.getItem('ms-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved ? saved : (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var root = document.documentElement;
+        var btnLight = document.getElementById('btn-light');
+        var btnDark = document.getElementById('btn-dark');
+
+        function applyTheme(t, save) {
+          root.setAttribute('data-theme', t);
+          if (save) localStorage.setItem('ms-theme', t);
+          if (t === 'dark') {
+            btnDark.classList.add('active');
+            btnLight.classList.remove('active');
+          } else {
+            btnLight.classList.add('active');
+            btnDark.classList.remove('active');
+          }
+        }
+
+        // Set initial active state on buttons
+        applyTheme(theme, false);
+
+        btnLight.addEventListener('click', function () { applyTheme('light', true); });
+        btnDark.addEventListener('click', function () { applyTheme('dark', true); });
+
+        // Follow system preference changes only if no saved pref
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('ms-theme')) {
+            applyTheme(e.matches ? 'dark' : 'light', false);
+          }
+        });
+      });
+    })();
+
     // Custom cursor
     const cursor = document.getElementById('cursor');
     const cursorRing = document.getElementById('cursorRing');
@@ -1664,28 +1952,19 @@
 
     document.querySelectorAll('a, button').forEach(el => {
       el.addEventListener('mouseenter', () => {
-        cursor.style.width = '20px';
-        cursor.style.height = '20px';
-        cursorRing.style.width = '54px';
-        cursorRing.style.height = '54px';
+        cursor.style.width = '20px'; cursor.style.height = '20px';
+        cursorRing.style.width = '54px'; cursorRing.style.height = '54px';
       });
       el.addEventListener('mouseleave', () => {
-        cursor.style.width = '10px';
-        cursor.style.height = '10px';
-        cursorRing.style.width = '36px';
-        cursorRing.style.height = '36px';
+        cursor.style.width = '10px'; cursor.style.height = '10px';
+        cursorRing.style.width = '36px'; cursorRing.style.height = '36px';
       });
     });
 
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-        }
-      });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
-
     document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
 
     // Burger menu
@@ -1717,17 +1996,14 @@
           const allLinks = [...navLinks, ...mobileNavLinks];
           allLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + entry.target.id) {
-              link.classList.add('active');
-            }
+            if (link.getAttribute('href') === '#' + entry.target.id) link.classList.add('active');
           });
         }
       });
     }, { threshold: 0.4 });
-
     sections.forEach(s => sectionObserver.observe(s));
 
-    // Skill bar — sits at target normally, resets to midpoint then re-animates to target on hover
+    // Skill bar animation
     document.querySelectorAll('.skill-item').forEach(item => {
       const bar = item.querySelector('.skill-bar-fill');
       if (!bar) return;
@@ -1735,13 +2011,11 @@
       const mid = parseFloat(target) / 2 + '%';
       let isHovered = false;
 
-      // Set to full target on load (no transition)
       bar.style.transition = 'none';
       bar.style.width = target;
 
       item.addEventListener('mouseenter', () => {
         isHovered = true;
-        // Snap to midpoint instantly, then animate to target
         bar.style.transition = 'none';
         bar.style.width = mid;
         requestAnimationFrame(() => {
@@ -1756,7 +2030,6 @@
 
       item.addEventListener('mouseleave', () => {
         isHovered = false;
-        // Snap back to full target instantly when leaving
         bar.style.transition = 'none';
         bar.style.width = target;
       });
