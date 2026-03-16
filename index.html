@@ -1378,6 +1378,327 @@
     }
 
     /* Mobile */
+    /* ── CASINO TABLE ── */
+    .casino-table {
+      margin: 0.75rem;
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .casino-felt {
+      background: #F0E6DF;
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+      border: 1.5px solid rgba(196, 85, 42, 0.3);
+      border-radius: 24px;
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.2), 0 8px 40px rgba(26, 22, 18, 0.15);
+    }
+
+    .casino-felt::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .casino-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 4rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .casino-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #C4552A;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .casino-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: #1A1612;
+      margin-bottom: 1.25rem;
+    }
+
+    .casino-title em {
+      font-style: italic;
+      color: #C4552A;
+    }
+
+    .casino-sub {
+      font-size: 0.9rem;
+      color: #6B5F52;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .casino-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .casino-dice-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .casino-dice {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: #1A1612;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .casino-dice:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .casino-dice:active {
+      transform: scale(0.95);
+    }
+
+    .casino-dice.rolling {
+      animation: casinoRoll 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    }
+
+    @keyframes casinoRoll {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      15% {
+        transform: rotate(-25deg) scale(1.15);
+      }
+
+      35% {
+        transform: rotate(30deg) scale(0.9);
+      }
+
+      55% {
+        transform: rotate(-18deg) scale(1.12);
+      }
+
+      75% {
+        transform: rotate(12deg) scale(0.96);
+      }
+
+      90% {
+        transform: rotate(-5deg) scale(1.02);
+      }
+
+      100% {
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    .casino-dice-face {
+      display: grid;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .casino-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #F0E6DF;
+    }
+
+    .casino-hint {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6B5F52;
+      font-family: var(--font-body);
+    }
+
+    .casino-result {
+      background: rgba(245, 240, 232, 0.04);
+      border: 1px solid rgba(196, 85, 42, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(10px) scale(0.97);
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+
+    .casino-result.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+
+    .casino-result-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #C4552A;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-body);
+    }
+
+    .casino-result-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #1A1612;
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .casino-result-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #C4552A;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .casino-result-btn:hover {
+      background: #a8441f;
+      transform: translateY(-2px);
+    }
+
+    [data-theme="dark"] .casino-felt {
+      background: #1C1410;
+      border-color: rgba(196, 85, 42, 0.4);
+    }
+
+    [data-theme="dark"] .casino-label {
+      color: rgba(232, 169, 138, 0.8);
+    }
+
+    [data-theme="dark"] .casino-title {
+      color: #F5F0E8;
+    }
+
+    [data-theme="dark"] .casino-title em {
+      color: #E8A98A;
+    }
+
+    [data-theme="dark"] .casino-sub {
+      color: rgba(245, 240, 232, 0.5);
+    }
+
+    [data-theme="dark"] .casino-hint {
+      color: rgba(245, 240, 232, 0.4);
+    }
+
+    [data-theme="dark"] .casino-dot {
+      background: #1C1410;
+    }
+
+    [data-theme="dark"] .casino-dice {
+      background: #F5F0E8 !important;
+    }
+
+    [data-theme="dark"] .casino-result {
+      background: rgba(0, 0, 0, 0.25);
+      border-color: rgba(245, 240, 232, 0.12);
+    }
+
+    [data-theme="dark"] .casino-result-tag {
+      color: #E8A98A;
+    }
+
+    [data-theme="dark"] .casino-result-name {
+      color: #F5F0E8;
+    }
+
+    .casino-chips {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .chip {
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      opacity: 0.2;
+    }
+
+    .chip-1 {
+      width: 48px;
+      height: 48px;
+      top: 12%;
+      left: 4%;
+      background: #C4552A;
+    }
+
+    .chip-2 {
+      width: 36px;
+      height: 36px;
+      top: 65%;
+      left: 7%;
+      background: #F5F0E8;
+    }
+
+    .chip-3 {
+      width: 56px;
+      height: 56px;
+      bottom: 10%;
+      right: 5%;
+      background: #C4552A;
+    }
+
+    .chip-4 {
+      width: 32px;
+      height: 32px;
+      top: 20%;
+      right: 8%;
+      background: #F5F0E8;
+    }
+
+    .chip-5 {
+      width: 44px;
+      height: 44px;
+      bottom: 20%;
+      left: 30%;
+      background: #8B6914;
+    }
+
     @media (max-width: 900px) {
       nav {
         padding: 1.25rem 1.5rem;
@@ -1431,6 +1752,17 @@
 
       .about-left {
         position: static;
+      }
+
+      .casino-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+
+      .casino-right {
+        width: 100%;
       }
 
       .skills-grid {
@@ -1545,7 +1877,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-image-wrap">
-        <img loading="eager" src="https://framerusercontent.com/images/XHIZXZxjIVyxonhrdHvTERFwQ.png" alt="Meet Shah" />
+        <img src="https://framerusercontent.com/images/XHIZXZxjIVyxonhrdHvTERFwQ.png" alt="Meet Shah" />
         <div class="hero-image-overlay"></div>
       </div>
     </div>
@@ -1567,7 +1899,7 @@
 
       <a href="ark.html" class="project-card reveal">
         <div class="project-thumb-wrap">
-          <img loading="lazy" class="project-thumb"
+          <img class="project-thumb"
             src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449110/main_pic_jdovbt.jpg"
             alt="ARK Healthcare" />
           <div class="project-overlay"></div>
@@ -1583,7 +1915,7 @@
 
       <a href="aiducate.html" class="project-card reveal">
         <div class="project-thumb-wrap">
-          <img loading="lazy" class="project-thumb"
+          <img class="project-thumb"
             src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449111/Aiducate_Cover_laztvp.jpg"
             alt="Aiducate" />
           <div class="project-overlay"></div>
@@ -1599,7 +1931,7 @@
 
       <a href="unicare.html" class="project-card reveal">
         <div class="project-thumb-wrap">
-          <img loading="lazy" class="project-thumb"
+          <img class="project-thumb"
             src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449110/Unicare_Cover_pic_tvppic.jpg"
             alt="UniCare" />
           <div class="project-overlay"></div>
@@ -1624,6 +1956,37 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- CASINO DICE TABLE -->
+    <div class="casino-table reveal">
+      <div class="casino-felt">
+        <div class="casino-inner">
+          <div class="casino-left">
+            <p class="casino-label">Feeling lucky?</p>
+            <h3 class="casino-title">Roll the dice —<br>let <em>fate</em> pick<br>your case study</h3>
+            <p class="casino-sub">Can't decide where to start? One roll and you're in.</p>
+          </div>
+          <div class="casino-right">
+            <div class="casino-dice-wrap">
+              <button class="casino-dice" id="casinoDice" aria-label="Roll dice"></button>
+              <p class="casino-hint" id="casinoHint">Click to roll</p>
+            </div>
+            <div class="casino-result" id="casinoResult">
+              <p class="casino-result-tag" id="casinoTag"></p>
+              <p class="casino-result-name" id="casinoName"></p>
+              <a class="casino-result-btn" id="casinoLink" href="#">View Case Study →</a>
+            </div>
+          </div>
+        </div>
+        <div class="casino-chips">
+          <span class="chip chip-1"></span>
+          <span class="chip chip-2"></span>
+          <span class="chip chip-3"></span>
+          <span class="chip chip-4"></span>
+          <span class="chip chip-5"></span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1708,8 +2071,8 @@
     </div>
     <div class="skills-grid">
       <div class="skill-item">
-        <div class="skill-icon"><img loading="lazy"
-            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/figma.svg" alt="Figma icon" /></div>
+        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/figma.svg"
+            alt="Figma icon" /></div>
         <p class="skill-name">Figma</p>
         <p class="skill-subtext">Designing intuitive interfaces with seamless collaboration</p>
         <div class="skill-bar-track">
@@ -1718,7 +2081,7 @@
         <p class="skill-pct-label">90%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img loading="lazy"
+        <div class="skill-icon"><img
             src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/adobephotoshop.svg"
             alt="Adobe Photoshop icon" /></div>
         <p class="skill-name">Adobe Photoshop</p>
@@ -1729,8 +2092,8 @@
         <p class="skill-pct-label">70%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img loading="lazy"
-            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/notion.svg" alt="Notion icon" /></div>
+        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/notion.svg"
+            alt="Notion icon" /></div>
         <p class="skill-name">Notion</p>
         <p class="skill-subtext">Streamlining project management workflow</p>
         <div class="skill-bar-track">
@@ -1739,7 +2102,7 @@
         <p class="skill-pct-label">65%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img loading="lazy"
+        <div class="skill-icon"><img
             src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/adobeillustrator.svg"
             alt="Adobe Illustrator icon" /></div>
         <p class="skill-name">Adobe Illustrator</p>
@@ -1750,8 +2113,8 @@
         <p class="skill-pct-label">60%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img loading="lazy"
-            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/miro.svg" alt="Miro icon" /></div>
+        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/miro.svg"
+            alt="Miro icon" /></div>
         <p class="skill-name">Miro</p>
         <p class="skill-subtext">Ideation & collaboration workshops</p>
         <div class="skill-bar-track">
@@ -1760,8 +2123,8 @@
         <p class="skill-pct-label">50%</p>
       </div>
       <div class="skill-item">
-        <div class="skill-icon"><img loading="lazy"
-            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/framer.svg" alt="Framer icon" /></div>
+        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/framer.svg"
+            alt="Framer icon" /></div>
         <p class="skill-name">Framer</p>
         <p class="skill-subtext">Building high-performance websites with animations</p>
         <div class="skill-bar-track">
@@ -1786,8 +2149,8 @@
             needs and approaches every project with creativity and innovation, setting him apart from other UX
             designers.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/rypeNd5kNzz6U5qwrqtQmnk0CNE.png" alt="Siddhi Soni" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/rypeNd5kNzz6U5qwrqtQmnk0CNE.png"
+              alt="Siddhi Soni" />
             <div>
               <p class="author-name">Siddhi Soni</p>
               <p class="author-role">CEO, SidEatsHealthy</p>
@@ -1799,8 +2162,8 @@
           <p class="testimonial-text">Meet is a professional and reliable UI/UX designer who consistently meets
             deadlines. Their work is always of high quality, and they are responsive to feedback and changes.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/fhLh8ZiJlAjnq7j5R3ee3slsY.png" alt="Ronak Shah" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/fhLh8ZiJlAjnq7j5R3ee3slsY.png"
+              alt="Ronak Shah" />
             <div>
               <p class="author-name">Ronak Shah</p>
               <p class="author-role">CEO, DroomDroom</p>
@@ -1812,8 +2175,8 @@
           <p class="testimonial-text">I was impressed by Meet's ability to quickly grasp our vision and translate it
             into a polished UI/UX design. Professional, communicative, and always delivers beyond expectations.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/4SdUzmpJIDa5rx1arXcMFWnroU.png" alt="Freelance Client" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/4SdUzmpJIDa5rx1arXcMFWnroU.png"
+              alt="Freelance Client" />
             <div>
               <p class="author-name">Freelance Client</p>
               <p class="author-role">CEO, Crypto-currency Platform</p>
@@ -1825,8 +2188,8 @@
           <p class="testimonial-text">Meet has a deep understanding of consumer appeal and structural design. They took
             our rough ideas and transformed them into packaging that is both shelf-stopping and structurally sound.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/53DZ3hMwG6PghSrdOBUBbFfrQ.png" alt="Freelance Client" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/53DZ3hMwG6PghSrdOBUBbFfrQ.png"
+              alt="Freelance Client" />
             <div>
               <p class="author-name">Freelance Client</p>
               <p class="author-role">Co-Founder, Food Brand</p>
@@ -1839,8 +2202,8 @@
             our engagement rates saw a dramatic boost and led directly to a significant increase in qualified sales
             leads.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/J8zmPj64Fl4BM2YNKx65t3Ur5Z0.png" alt="Freelance Client" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/J8zmPj64Fl4BM2YNKx65t3Ur5Z0.png"
+              alt="Freelance Client" />
             <div>
               <p class="author-name">Freelance Client</p>
               <p class="author-role">Marketing Director, Retail Brand</p>
@@ -1854,8 +2217,8 @@
             needs and approaches every project with creativity and innovation, setting him apart from other UX
             designers.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/rypeNd5kNzz6U5qwrqtQmnk0CNE.png" alt="Siddhi Soni" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/rypeNd5kNzz6U5qwrqtQmnk0CNE.png"
+              alt="Siddhi Soni" />
             <div>
               <p class="author-name">Siddhi Soni</p>
               <p class="author-role">CEO, SidEatsHealthy</p>
@@ -1867,8 +2230,8 @@
           <p class="testimonial-text">Meet is a professional and reliable UI/UX designer who consistently meets
             deadlines. Their work is always of high quality, and they are responsive to feedback and changes.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/fhLh8ZiJlAjnq7j5R3ee3slsY.png" alt="Ronak Shah" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/fhLh8ZiJlAjnq7j5R3ee3slsY.png"
+              alt="Ronak Shah" />
             <div>
               <p class="author-name">Ronak Shah</p>
               <p class="author-role">CEO, DroomDroom</p>
@@ -1880,8 +2243,8 @@
           <p class="testimonial-text">I was impressed by Meet's ability to quickly grasp our vision and translate it
             into a polished UI/UX design. Professional, communicative, and always delivers beyond expectations.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/4SdUzmpJIDa5rx1arXcMFWnroU.png" alt="Freelance Client" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/4SdUzmpJIDa5rx1arXcMFWnroU.png"
+              alt="Freelance Client" />
             <div>
               <p class="author-name">Freelance Client</p>
               <p class="author-role">CEO, Crypto-currency Platform</p>
@@ -1893,8 +2256,8 @@
           <p class="testimonial-text">Meet has a deep understanding of consumer appeal and structural design. They took
             our rough ideas and transformed them into packaging that is both shelf-stopping and structurally sound.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/53DZ3hMwG6PghSrdOBUBbFfrQ.png" alt="Freelance Client" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/53DZ3hMwG6PghSrdOBUBbFfrQ.png"
+              alt="Freelance Client" />
             <div>
               <p class="author-name">Freelance Client</p>
               <p class="author-role">Co-Founder, Food Brand</p>
@@ -1907,8 +2270,8 @@
             our engagement rates saw a dramatic boost and led directly to a significant increase in qualified sales
             leads.</p>
           <div class="testimonial-author">
-            <img loading="lazy" class="author-avatar"
-              src="https://framerusercontent.com/images/J8zmPj64Fl4BM2YNKx65t3Ur5Z0.png" alt="Freelance Client" />
+            <img class="author-avatar" src="https://framerusercontent.com/images/J8zmPj64Fl4BM2YNKx65t3Ur5Z0.png"
+              alt="Freelance Client" />
             <div>
               <p class="author-name">Freelance Client</p>
               <p class="author-role">Marketing Director, Retail Brand</p>
@@ -2119,6 +2482,62 @@
     });
   </script>
   <script src="chat-widget.js"></script>
+  <script>
+    // ── CASINO DICE ──
+    (function () {
+      var cases = [
+        { tag: 'HealthTech · Enterprise', name: 'ARK — Healthcare Risk Assessment', url: 'ark.html' },
+        { tag: 'EdTech · Social Impact', name: 'Aiducate — Educational Resource Platform', url: 'aiducate.html' },
+        { tag: 'HealthTech · Mobile App', name: 'UniCare — Campus Healthcare Platform', url: 'unicare.html' },
+      ];
+      var faces = [
+        [[1, 1], [1, 1], [1, 1]],
+        [[1, 0], [0, 0], [0, 1]],
+        [[1, 0], [0, 1], [0, 1]],
+        [[1, 1], [0, 0], [1, 1]],
+        [[1, 1], [0, 1], [1, 1]],
+        [[1, 1], [1, 1], [1, 0]],
+      ];
+      function renderFace(n) {
+        var btn = document.getElementById('casinoDice');
+        if (!btn) return;
+        var face = faces[n - 1];
+        btn.innerHTML = '<div class="casino-dice-face" style="display:grid;grid-template-columns:repeat(2,10px);grid-template-rows:repeat(3,10px);gap:6px;">' +
+          face.flat().map(function (d) { return '<div class="casino-dot" style="opacity:' + (d ? 1 : 0) + '"></div>'; }).join('') + '</div>';
+      }
+      renderFace(6);
+      var isRolling = false;
+      var btn = document.getElementById('casinoDice');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        if (isRolling) return;
+        isRolling = true;
+        var result = document.getElementById('casinoResult');
+        var hint = document.getElementById('casinoHint');
+        result.classList.remove('show');
+        btn.classList.remove('rolling');
+        void btn.offsetWidth;
+        btn.classList.add('rolling');
+        hint.textContent = 'Rolling...';
+        var ticks = 0;
+        var interval = setInterval(function () {
+          renderFace(Math.floor(Math.random() * 6) + 1);
+          ticks++;
+          if (ticks > 12) {
+            clearInterval(interval);
+            var picked = Math.floor(Math.random() * 3);
+            renderFace(picked + 1);
+            var cs = cases[picked];
+            document.getElementById('casinoTag').textContent = cs.tag;
+            document.getElementById('casinoName').textContent = cs.name;
+            document.getElementById('casinoLink').href = cs.url;
+            hint.textContent = 'Roll again';
+            setTimeout(function () { result.classList.add('show'); isRolling = false; }, 150);
+          }
+        }, 55);
+      });
+    })();
+  </script>
 </body>
 
 </html>
