@@ -2507,6 +2507,7 @@
       }
       renderFace(6);
       var isRolling = false;
+      var lastPick = -1;
       var btn = document.getElementById('casinoDice');
       if (!btn) return;
       btn.addEventListener('click', function () {
@@ -2526,6 +2527,13 @@
           if (ticks > 12) {
             clearInterval(interval);
             var picked = Math.floor(Math.random() * 3);
+            // Never pick same as last two rolls
+            var attempts = 0;
+            while (attempts < 10 && picked === lastPick) {
+              picked = Math.floor(Math.random() * 3);
+              attempts++;
+            }
+            lastPick = picked;
             renderFace(picked + 1);
             var cs = cases[picked];
             document.getElementById('casinoTag').textContent = cs.tag;
