@@ -795,6 +795,40 @@
     [data-theme="dark"] .footer-social-link:hover {
       color: #E8A98A;
     }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+      pointer-events: none;
+      z-index: 500;
+      box-shadow: 0 4px 20px rgba(196, 85, 42, 0.4);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .back-to-top:hover {
+      background: #a8441f;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(196, 85, 42, 0.5);
+    }
   </style>
 </head>
 
@@ -872,7 +906,7 @@
 
   <div style="padding:3rem 4rem; background:var(--cream); transition:background 0.3s;">
     <div class="hero-image-wrap">
-      <img loading="eager" src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449110/main_pic_jdovbt.jpg"
+      <img src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449110/main_pic_jdovbt.jpg"
         alt="ARK Dashboard" />
     </div>
   </div>
@@ -907,7 +941,7 @@
         the line.</p>
       <div class="gallery">
         <div class="gallery-img">
-          <img loading="lazy" src="https://framerusercontent.com/images/8TjP07jwyjiepxfhworloKPRwpI.jpg"
+          <img src="https://framerusercontent.com/images/8TjP07jwyjiepxfhworloKPRwpI.jpg"
             alt="Before — legacy dashboard with high visual noise" />
           <p class="gallery-caption">Before: high visual noise and unclear hierarchy created friction in high-stakes
             moments.</p>
@@ -933,13 +967,13 @@
         platform treated everyone the same.</p>
       <div class="gallery">
         <div class="gallery-img">
-          <img loading="lazy" src="ark/User_personas.png"
+          <img src="ark/User_personas.png"
             alt="User Personas — Dr. Jackie O'Connell, Nurse Julia Roberts, Steve Fagan" />
           <p class="gallery-caption">Three distinct user types with different priorities and decision-making contexts.
           </p>
         </div>
         <div class="gallery-img">
-          <img loading="lazy" src="ark/Journey_Mapping.jpg" alt="Journey Mapping — Admin and Nurse workflows" />
+          <img src="ark/Journey_Mapping.jpg" alt="Journey Mapping — Admin and Nurse workflows" />
           <p class="gallery-caption">Journey Mapping conducted with hospital staff (Admin & Nurse) — mapping user
             actions, touchpoints, feelings, painpoints, and opportunities across five key stages.</p>
         </div>
@@ -949,7 +983,7 @@
         moving from data-dense screens to decision-first layouts.</p>
       <div class="gallery">
         <div class="gallery-img">
-          <img loading="lazy" src="ark/Basic_Wireframes.jpg"
+          <img src="ark/Basic_Wireframes.jpg"
             alt="ARK Wireframes — login, dashboard, CUBE summary, knowledge graph, mobile" />
           <p class="gallery-caption">Wireframe evolution: from information overload to layered disclosure and clear
             hierarchy.</p>
@@ -991,19 +1025,19 @@
       <p>The final UI is calm, structured, and prioritised — so users can spot what matters immediately and access
         deeper details only when needed.</p>
       <div class="gallery">
-        <div class="gallery-img"><img loading="lazy"
-            src="https://framerusercontent.com/images/xaZjogKsA8lHbka5RkEBurM2kpk.png" alt="ARK Final Dashboard" />
+        <div class="gallery-img"><img src="https://framerusercontent.com/images/xaZjogKsA8lHbka5RkEBurM2kpk.png"
+            alt="ARK Final Dashboard" />
           <p class="gallery-caption">Final redesigned dashboard built for rapid scanning and prioritized risk signals.
           </p>
         </div>
-        <div class="gallery-img"><img loading="lazy"
-            src="https://framerusercontent.com/images/h6cg1NWUpGoXWfoeFr2DDl46AQ.png" alt="ARK UI Screen 2" /></div>
-        <div class="gallery-img"><img loading="lazy"
-            src="https://framerusercontent.com/images/FpWK7jlJiGgVEnP9Kz0GPN1WfBk.jpg" alt="ARK UI Screen 3" /></div>
-        <div class="gallery-img"><img loading="lazy"
-            src="https://framerusercontent.com/images/WXsmb7GcJTrSsVzKbbuIjjBFeM.jpg" alt="ARK UI Screen 4" /></div>
-        <div class="gallery-img"><img loading="lazy"
-            src="https://framerusercontent.com/images/mqjJB7xlUnbY7Y7AXamUiQuL4.jpg" alt="ARK UI Screen 5" /></div>
+        <div class="gallery-img"><img src="https://framerusercontent.com/images/h6cg1NWUpGoXWfoeFr2DDl46AQ.png"
+            alt="ARK UI Screen 2" /></div>
+        <div class="gallery-img"><img src="https://framerusercontent.com/images/FpWK7jlJiGgVEnP9Kz0GPN1WfBk.jpg"
+            alt="ARK UI Screen 3" /></div>
+        <div class="gallery-img"><img src="https://framerusercontent.com/images/WXsmb7GcJTrSsVzKbbuIjjBFeM.jpg"
+            alt="ARK UI Screen 4" /></div>
+        <div class="gallery-img"><img src="https://framerusercontent.com/images/mqjJB7xlUnbY7Y7AXamUiQuL4.jpg"
+            alt="ARK UI Screen 5" /></div>
       </div>
     </div>
 
@@ -1070,7 +1104,7 @@
     <p class="next-label">Next Project</p>
     <h2 class="next-title">Up next — <em>Aiducate</em></h2>
     <a href="aiducate.html" class="next-card">
-      <img loading="lazy" src="https://framerusercontent.com/images/tvzg3yCKOrlTc1wiMs7pH3Dfg.jpg" alt="Aiducate" />
+      <img src="https://framerusercontent.com/images/tvzg3yCKOrlTc1wiMs7pH3Dfg.jpg" alt="Aiducate" />
       <div class="next-card-info">
         <p class="next-card-cat">EdTech · Social Impact</p>
         <p class="next-card-title">Aiducate — Educational Resource Platform</p>
@@ -1133,6 +1167,24 @@
     })();
   </script>
   <script src="chat-widget.js"></script>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <script>
+    // ── BACK TO TOP ──
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) backToTop.classList.add('visible');
+      else backToTop.classList.remove('visible');
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 
 </html>

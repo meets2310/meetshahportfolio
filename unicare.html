@@ -754,6 +754,40 @@
     [data-theme="dark"] .footer-social-link:hover {
       color: #E8A98A;
     }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+      pointer-events: none;
+      z-index: 500;
+      box-shadow: 0 4px 20px rgba(196, 85, 42, 0.4);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .back-to-top:hover {
+      background: #a8441f;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(196, 85, 42, 0.5);
+    }
   </style>
 </head>
 
@@ -831,8 +865,7 @@
 
   <div style="padding:3rem 4rem; background:var(--cream); transition:background 0.3s;">
     <div class="hero-image-wrap">
-      <img loading="eager"
-        src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449110/Unicare_Cover_pic_tvppic.jpg"
+      <img src="https://res.cloudinary.com/doglwmdgz/image/upload/v1773449110/Unicare_Cover_pic_tvppic.jpg"
         alt="UniCare Platform" />
     </div>
   </div>
@@ -883,7 +916,7 @@
         multiple calls, Hesitation around mental health stigma, and Relief when support is quick and clear.</p>
       <div class="gallery">
         <div class="gallery-img">
-          <img loading="lazy" src="unicare/Unicare_User_Personas.jpg" alt="User Personas — Dara Alves and John Mayer" />
+          <img src="unicare/Unicare_User_Personas.jpg" alt="User Personas — Dara Alves and John Mayer" />
           <p class="gallery-caption">User personas — Dara (STEM master's student managing anxiety) and John (athlete
             balancing training and nutrition), each representing distinct needs that shaped the three-pillar platform
             structure.</p>
@@ -895,13 +928,13 @@
         overwhelming.</p>
       <div class="gallery">
         <div class="gallery-img">
-          <img loading="lazy" src="unicare/Unicare_Wireframe_1.jpg"
+          <img src="unicare/Unicare_Wireframe_1.jpg"
             alt="Lo-fi wireframes — appointment booking and confirmation flow" />
           <p class="gallery-caption">Early wireframes exploring the appointment booking flow — from selecting a doctor
             and date to the confirmation modal, keeping the process to the fewest possible steps.</p>
         </div>
         <div class="gallery-img">
-          <img loading="lazy" src="unicare/Unicare_Wireframe_2.jpg"
+          <img src="unicare/Unicare_Wireframe_2.jpg"
             alt="Lo-fi wireframes — about us, mental health advice, and doctor listings" />
           <p class="gallery-caption">Wireframe explorations for the About Us, Mental Health Advice, and doctor listing
             pages — establishing information hierarchy and content structure before visual styling.</p>
@@ -947,32 +980,28 @@
         availability and confirmation, Mental Health guided resources with optional chat support, and Nutrition with
         practical meal guidance.</p>
       <div class="gallery">
-        <div class="gallery-img"><img loading="lazy" src="unicare/Unicare_Final_1.jpg"
-            alt="UniCare — Patient registration screen" />
+        <div class="gallery-img"><img src="unicare/Unicare_Final_1.jpg" alt="UniCare — Patient registration screen" />
           <p class="gallery-caption">Onboarding screen — role-based entry (Patient / Doctor) with a minimal sign-up
             form, reducing friction from the very first interaction.</p>
         </div>
-        <div class="gallery-img"><img loading="lazy" src="unicare/Unicare_Final_2.jpg"
-            alt="UniCare — Book an appointment" />
+        <div class="gallery-img"><img src="unicare/Unicare_Final_2.jpg" alt="UniCare — Book an appointment" />
           <p class="gallery-caption">Appointment booking — students search for doctors, select a date and time from a
             calendar, and book in just a few steps without a phone call.</p>
         </div>
-        <div class="gallery-img"><img loading="lazy" src="unicare/Unicare_Final_3.jpg"
+        <div class="gallery-img"><img src="unicare/Unicare_Final_3.jpg"
             alt="UniCare — Appointment confirmation modal" />
           <p class="gallery-caption">Confirmation modal — clear summary of doctor, time, type, and location before
             committing, reducing the "did it go through?" anxiety.</p>
         </div>
-        <div class="gallery-img"><img loading="lazy" src="unicare/Unicare_Final_4.jpg" alt="UniCare — Nutrition plan" />
+        <div class="gallery-img"><img src="unicare/Unicare_Final_4.jpg" alt="UniCare — Nutrition plan" />
           <p class="gallery-caption">Nutrition plan — a personalised weekly meal plan prescribed by the student's
             doctor, with a snack list for easy daily reference.</p>
         </div>
-        <div class="gallery-img"><img loading="lazy" src="unicare/Unicare_Final_5.jpg"
-            alt="UniCare — My appointments list" />
+        <div class="gallery-img"><img src="unicare/Unicare_Final_5.jpg" alt="UniCare — My appointments list" />
           <p class="gallery-caption">My Appointments — a clean log of upcoming and past appointments with doctor name,
             address, time, and a details link for full context.</p>
         </div>
-        <div class="gallery-img"><img loading="lazy" src="unicare/Unicare_Final_6.jpg"
-            alt="UniCare — Mental health doctors" />
+        <div class="gallery-img"><img src="unicare/Unicare_Final_6.jpg" alt="UniCare — Mental health doctors" />
           <p class="gallery-caption">Mental Health section — a non-judgmental directory of counsellors and psychiatrists
             with a freephone support line, making it easy to ask for help without stigma.</p>
         </div>
@@ -1025,7 +1054,7 @@
     <p class="next-label">Back to the beginning</p>
     <h2 class="next-title">View <em>ARK</em> project</h2>
     <a href="ark.html" class="next-card">
-      <img loading="lazy" src="https://framerusercontent.com/images/cBtyWY9IDDKYR43TYyd1rzf5A.png" alt="ARK" />
+      <img src="https://framerusercontent.com/images/cBtyWY9IDDKYR43TYyd1rzf5A.png" alt="ARK" />
       <div class="next-card-info">
         <p class="next-card-cat">Healthcare · Enterprise Dashboard</p>
         <p class="next-card-title">ARK — Healthcare Risk Assessment Platform</p>
@@ -1086,6 +1115,24 @@
     })();
   </script>
   <script src="chat-widget.js"></script>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <script>
+    // ── BACK TO TOP ──
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) backToTop.classList.add('visible');
+      else backToTop.classList.remove('visible');
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 
 </html>
